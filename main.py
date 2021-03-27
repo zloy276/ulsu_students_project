@@ -26,12 +26,18 @@ from natasha import (
 #     print(i)
 #
 
+def remSymbol(text,arr):
+    for i in text:
+        if i in arr:
+            text.rem(i)
+    return text
 
 def list():
     emb = NewsEmbedding()
     document = docx.Document('Валитов-ВКР.docx')
     text = '\n'.join([para.text for para in document.paragraphs])
-
+    stopArr = []
+    text = remSymbol(text,stopArr)
     segmenter = Segmenter()
     doc = Doc(text)
     doc.segment(segmenter)
