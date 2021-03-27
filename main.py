@@ -1,15 +1,23 @@
+import json
+
 import docx
 from natasha import (
     Segmenter,
 
     NewsEmbedding,
     NewsMorphTagger,
-    NewsSyntaxParser,
-
     Doc, MorphVocab
 )
 
 
+def load_stopwords():
+    with open('stopwords.json', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+        stop_arr = data['stopwords']
+    return stop_arr
+
+
+# TODO: Добавить функцию пополнения стоплиста
 #
 # def getText(filename):
 #     doc = Document(filename)
@@ -26,18 +34,12 @@ from natasha import (
 #     print(i)
 #
 
-def remSymbol(text,arr):
-    for i in text:
-        if i in arr:
-            text.replace(i,'')
-    return text
 
-def list():
+def list(stop_arr):
     emb = NewsEmbedding()
+    # TODO: Вынести это в отдельную функцию
     document = docx.Document('Валитов-ВКР.docx')
     text = '\n'.join([para.text for para in document.paragraphs])
-    stopArr = []
-    text = remSymbol(text,stopArr)
     segmenter = Segmenter()
     doc = Doc(text)
     doc.segment(segmenter)
@@ -49,11 +51,14 @@ def list():
     for token in doc.tokens:
         token.lemmatize(morph_vocab)
     for token in doc.tokens:
-        yield token.lemma.lower()
+        if token.lemma not in stop_arr and not token.lemma.isnumeric():
+            yield token.lemma.lower()
 
+
+stopArr = load_stopwords()
 
 dict = dict()
-for i in list():
+for i in list(stopArr):
     try:
         dict[i] += 1
     except:
