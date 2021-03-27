@@ -43,7 +43,7 @@ def list():
     for token in doc.tokens:
         token.lemmatize(morph_vocab)
     for token in doc.tokens:
-        yield token.lemma
+        yield token.lemma.lower()
 
 
 dict = dict()
