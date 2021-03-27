@@ -29,7 +29,7 @@ from natasha import (
 def remSymbol(text,arr):
     for i in text:
         if i in arr:
-            text.rem(i)
+            text.replace(i,'')
     return text
 
 def list():
