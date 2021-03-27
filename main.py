@@ -1,16 +1,14 @@
 import docx
-from natasha import Doc, Segmenter, MorphVocab
+from natasha import (
+    Segmenter,
 
-document = docx.Document('Валитов-ВКР.docx')
-text = '\n'.join([para.text for para in document.paragraphs])
+    NewsEmbedding,
+    NewsMorphTagger,
+    NewsSyntaxParser,
 
-segmenter = Segmenter()
-doc = Doc(text)
-doc.segment(segmenter)
+    Doc, MorphVocab
+)
 
-morph_vocab = MorphVocab()
-for token in doc.tokens:
-    print(type(token))
 
 #
 # def getText(filename):
@@ -28,9 +26,25 @@ for token in doc.tokens:
 #     print(i)
 #
 
-"""
+
 def list():
-   
+    emb = NewsEmbedding()
+    document = docx.Document('Валитов-ВКР.docx')
+    text = '\n'.join([para.text for para in document.paragraphs])
+
+    segmenter = Segmenter()
+    doc = Doc(text)
+    doc.segment(segmenter)
+
+    morph_tagger = NewsMorphTagger(emb)
+    doc.tag_morph(morph_tagger)
+
+    morph_vocab = MorphVocab()
+    for token in doc.tokens:
+        token.lemmatize(morph_vocab)
+    for token in doc.tokens:
+        yield token.lemma
+
 
 dict = dict()
 for i in list():
@@ -40,4 +54,3 @@ for i in list():
         dict[i] = 1
 
 print({k: v for k, v in reversed(sorted(dict.items(), key=lambda item: item[1]))})
-"""
