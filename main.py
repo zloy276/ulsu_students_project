@@ -1,5 +1,16 @@
-from docx import Document
+import docx
+from natasha import Doc, Segmenter, MorphVocab
 
+document = docx.Document('Валитов-ВКР.docx')
+text = '\n'.join([para.text for para in document.paragraphs])
+
+segmenter = Segmenter()
+doc = Doc(text)
+doc.segment(segmenter)
+
+morph_vocab = MorphVocab()
+for token in doc.tokens:
+    print(type(token))
 
 #
 # def getText(filename):
@@ -17,26 +28,9 @@ from docx import Document
 #     print(i)
 #
 
-
+"""
 def list():
-    document = Document('./Валитов-ВКР.docx'
-                        '')
-    for para in document.paragraphs:
-        if para.text:
-            a = para.text
-            a = a.replace("+", "")
-            a = a.replace("=", "")
-            a = a.replace('.', "")
-            a = a.replace(",", "")
-            a = a.replace("}", "")
-            a = a.replace("{", "")
-            a = a.replace(";", "")
-            a = a.replace("(", "")
-            a = a.replace(")", "")
-            for i in a.split(' '):
-                if i:
-                    yield i
-
+   
 
 dict = dict()
 for i in list():
@@ -46,3 +40,4 @@ for i in list():
         dict[i] = 1
 
 print({k: v for k, v in reversed(sorted(dict.items(), key=lambda item: item[1]))})
+"""
