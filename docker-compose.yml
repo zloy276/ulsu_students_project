@@ -1,0 +1,27 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+      args:
+        DEBUG: "True"
+    container_name: knauf_server
+    command: poetry run python3 manage.py runserver 0.0.0.0:8001
+    depends_on:
+      - db
+    environment:
+      DEBUG: 'True'
+      DATABASE_URL: postgres://postgres@db/postgres
+      REDIS_URL: redis://redis/0
+      BROKER_URL: 'amqp://rabbit:rabbit@rabbitmq:5672/rabbit_vhost'
+      CORS_ORIGIN_WHITELIST: 'localhost:3000,app.jetadmin.io'
+    ports:
+      - 8001:8001
+    volumes:
+      - ./server:/home/python/app:delegated
+
+
+  db:
+    image: postgres:11.1
+    container_name: knauf_db
