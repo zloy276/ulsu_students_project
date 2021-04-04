@@ -38,6 +38,8 @@ django-csrf-view = "^0.1.0"
 packaging = "^19.0"
 jet_django = "^0.8.9"
 django-anymail = "^7.0"
+python-docx = "^0.8.10"
+pytesseract = "^0.3.7"
 
 [tool.poetry.dev-dependencies]
 
