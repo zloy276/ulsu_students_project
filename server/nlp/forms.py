@@ -1,5 +1,8 @@
-from django import form
+from django import forms
+from .models import Document
 
-class UploadForm(form.Form):
-    file=form.FileField()
-    
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ('description', 'document',)

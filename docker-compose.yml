@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         DEBUG: "True"
-    container_name: knauf_server
+    container_name: server
     command: poetry run python3 manage.py runserver 0.0.0.0:8001
     depends_on:
       - db
@@ -24,4 +24,4 @@ services:
 
   db:
     image: postgres:11.1
-    container_name: knauf_db
+    container_name: db

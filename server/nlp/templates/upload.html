@@ -1,11 +1,10 @@
 <!doctype html>
 <html>
-<form action="{%url 'show' %}" method="post" novalidate>
-    {%csrf_token%}
-    <table>
-        {{form.as_table}}
-    </table>
-    <button type="submit">submit</button>
-</form>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
 
 </html>
