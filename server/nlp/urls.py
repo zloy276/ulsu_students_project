@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('gqw/',views.process_gqw,name='process_gqw'),
+    path('upload/',views.upload,name='upload'),
+    path('show/',view.show,name='show')
 ]
