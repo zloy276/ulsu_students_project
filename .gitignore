@@ -17,3 +17,4 @@ client/static/
 .mypy_cache
 media
 client/src/progressive-app/service-worker.js
+.devcontainer
