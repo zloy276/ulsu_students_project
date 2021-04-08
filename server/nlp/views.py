@@ -23,5 +23,5 @@ def model_form_upload(request):
 def process_doc(request, pk):
     doc = Document.objects.get(pk=pk)
     print(doc.document)
-    NLP_1.main(doc.document)
+    data=NLP_1.main(doc.document)
     return render(request, 'show.html')

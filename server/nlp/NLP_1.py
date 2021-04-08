@@ -238,14 +238,17 @@ def process_scan(dir):  # обработка ворда, титульник ко
     text_edit = feedback_1.lower()  # весь текст в нижнем регистре
     str_name = text_original[text_edit.find('студ'):text_edit.find('руково')]  #
 
-    data.append('ФИО: {}'.format(get_name_from_feedback1(str_name)))
-    data.append('Факультет: {}'.format(find_faculty(text_edit)))
-    data.append('Направление: {}'.format(find_direction(text_edit)))
-    data.append('Профиль: {}'.format(find_profile(text_edit)))
-    data.append('Тема ВКР: {}'.format(find_theme(text_edit)))
-    data.append('Частотный анализ слов:\n{}'.format(most_common_word(text)))
-    save_in_docx(data, dir, 'scan')
+    dict = {}
+    dict['ФИО'] = get_name_from_feedback1(str_name)
+    dict['Факультет'] = find_faculty(text_edit)
+    dict['Направление'] = find_direction(text_edit)
+    dict['Профиль'] = find_profile(text_edit)
+    dict['Тема ВКР'] = find_theme(text_edit)
+    dict['Частотный анализ слов'] = most_common_word(text)
 
+    data = make_data(dict)
+    save_in_docx(data, dir, 'scan')
+    return dict
 
 def process_text(dir):  # обработка ворда состоящего только из текста
     data = []
@@ -260,14 +263,28 @@ def process_text(dir):  # обработка ворда состоящего т�
     text_edit = text_original.lower()  # весь текст в нижнем регистре
     titul = text_edit[text_edit.find('ульяновский'):text_edit.find('введение')]  # Оставляем только титульник
     str_name = text_original[titul.find('студент'):titul.find('руководитель')]  #
-    data.append('ФИО: {}'.format(get_name_from_feedback1(str_name)))  #
-    data.append('Факультет: {}'.format(find_faculty(titul)))
-    data.append('Направление: {}'.format(find_direction(titul)))
-    data.append('Профиль: {}'.format(find_profile(titul)))
-    data.append('Тема ВКР: {}'.format(find_theme(titul)))
-    data.append('Частотный анализ слов:\n{}'.format(most_common_word(text_edit)))
-    save_in_docx(data, dir, 'text')
 
+    dict ={}
+    dict['ФИО']=get_name_from_feedback1(str_name)
+    dict['Факультет']=find_faculty(titul)
+    dict['Направление']=find_direction(titul)
+    dict['Профиль']=find_profile(titul)
+    dict['Тема ВКР']=find_theme(titul)
+    dict['Частотный анализ слов']=most_common_word(text_edit)
+
+    data=make_data(dict)
+    save_in_docx(data, dir, 'text')
+    return dict
+
+def make_data(dict):
+    data=[]
+    data.append('ФИО: {}'.format(dict['ФИО']))
+    data.append('Факультет: {}'.format(dict['Факультет']))
+    data.append('Направление: {}'.format(dict['Направление']))
+    data.append('Профиль: {}'.format(dict['Профиль']))
+    data.append('Тема ВКР: {}'.format(dict['Тема ВКР']))
+    data.append('Частотный анализ слов:\n{}'.format(dict['Частотный анализ слов']))
+    return data
 
 def main(doc=None):
     print(type(doc))
@@ -284,9 +301,9 @@ def main(doc=None):
             russian_stopwords.extend([line.rstrip()])
     if doc:
         if not text_or_scan(doc):
-            process_scan(doc)
+            data=process_scan(doc)
         else:
-            process_text(doc)
+            data=process_text(doc)
     else:
         os.chdir(folder)
         paths = load_docx_link(folder)
@@ -300,7 +317,7 @@ def main(doc=None):
                 print('Это текст!!')
                 process_text(dir)
                 print('\n----------------------------------------\n')
-
+    return data
 
 if __name__ == '__main__':
     main()
