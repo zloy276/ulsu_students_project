@@ -40,6 +40,9 @@ jet_django = "^0.8.9"
 django-anymail = "^7.0"
 python-docx = "^0.8.10"
 pytesseract = "^0.3.7"
+opencv-python = "^4.5.1"
+deeppavlov = "^0.14.1"
+natasha = "^1.4.0"
 
 [tool.poetry.dev-dependencies]
 
