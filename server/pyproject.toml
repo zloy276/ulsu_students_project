@@ -43,6 +43,7 @@ pytesseract = "^0.3.7"
 opencv-python = "^4.5.1"
 deeppavlov = "^0.14.1"
 natasha = "^1.4.0"
+textract = "^1.6.3"
 
 [tool.poetry.dev-dependencies]
 
