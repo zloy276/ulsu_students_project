@@ -1,4 +1,5 @@
 from django.core.files.storage import FileSystemStorage
+from django.core.files import File
 from django.shortcuts import render, redirect
 from .forms import DocumentForm
 from django.urls import reverse
@@ -22,7 +23,20 @@ def model_form_upload(request):
 
 def process_doc(request, pk):
     doc = models.UploadedFile.objects.get(pk=pk)
-    print(doc.document)
-    data=NLP_1.main(doc.document)
-    print(data)
+    data = NLP_1.main(doc.document)
+
+    f = open(doc.document)
+    f = File(f)
+    document = models.Document.objects.create()
+
+    document.upload_to = '{}/{}/documents/'.format(
+        data['Факультет'], data['Направление'])
+    document.document = f
+    document.save()
+
+    student = models.Student.objects.create(full_name=data['ФИО'], direction=data['Направление'], profile=[
+                                            'Профиль'], topic=['Тема ВКР'], document=document)
+    student.words_cloud = data['Частотный анализ слов']
+    student.save()
+
     return render(request, 'show.html')

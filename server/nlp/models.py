@@ -12,6 +12,7 @@ class Department(models.Model):
     faculty = models.ForeignKey(
         'Faculty', on_delete=models.CASCADE, verbose_name='Факультет')
 
+
 class Direction(models.Model):
     name = models.CharField("Название", max_length=200, db_index=True)
     department = models.ForeignKey(
@@ -21,14 +22,15 @@ class Direction(models.Model):
 class Student(models.Model):
     full_name = models.CharField("ФИО", max_length=200, db_index=True)
     direction = models.ForeignKey(
-        'Direction', on_delete=models.CASCADE, verbose_name="Направление")
+        'Direction', on_delete=models.CASCADE, verbose_name="Направление", null=True)
     profile = models.CharField("Профиль", max_length=200)
     topic = models.CharField("Тема ВКР", max_length=200)
     words_cloud = ArrayField(models.CharField(
-        max_length=200), blank=True, verbose_name="Облако слов")
-    document = models.ForeignKey('Document', on_delete=models.CASCADE)
+        max_length=200), blank=True, verbose_name="Облако слов", null=True)
+    document = models.ForeignKey(
+        'Document', on_delete=models.CASCADE, null=True)
     report = models.ForeignKey(
-        'ProcessedDocument', on_delete=models.CASCADE)
+        'ProcessedDocument', on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ('full_name',)
