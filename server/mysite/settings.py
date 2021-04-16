@@ -77,7 +77,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+DATABASES = {
+'default': {
+
+'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+'NAME': 'postgres',
+
+'USER': 'postgres',
+
+'PASSWORD': 'postgres',
+
+'HOST': '127.0.0.1',
+
+'PORT': '5434',
+
+}
+
+}
 
 
 # Password validation
@@ -117,6 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
