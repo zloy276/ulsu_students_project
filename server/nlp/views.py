@@ -45,8 +45,8 @@ def process_doc(request, pk):
 
     print(direction)
 
-    student = Student.objects.create(full_name=data['ФИО'], direction=direction, profile=['Профиль'],
-                                     topic=['Тема ВКР'], document=doc.document)
+    student = Student.objects.create(full_name=data['ФИО'], direction=direction, profile=data['Профиль'],
+                                     topic=data['Тема ВКР'], document=doc.document)
 
     if data['Частотный анализ слов'] != 'Error':
         student.words_cloud = data['Частотный анализ слов']
