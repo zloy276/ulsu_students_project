@@ -1,220 +1,112 @@
-absl-py==0.12.0
 aio-pika==6.4.1
+aiofiles==0.6.0
 aiormq==3.3.1
-amqp @ file:///home/zloy/.cache/pypoetry/artifacts/0a/7f/d0/192fd502e9bdce1be75b6a787ede220320bc04da3af8529c2981ce1b9b/amqp-2.6.1-py2.py3-none-any.whl
-appdirs==1.4.4
 argcomplete==1.10.0
-astor==0.8.1
-astroid @ file:///home/zloy/.cache/pypoetry/artifacts/59/41/d9/8506cf8a06e33b8b7a731f052666936febfea2af7466cabf4e05841755/astroid-2.2.5-py3-none-any.whl
-backcall @ file:///home/zloy/.cache/pypoetry/artifacts/2e/8e/94/3981da93ede25f11149b61e6e95a3beb08c0da0851b20454ffdd2be019/backcall-0.2.0-py2.py3-none-any.whl
+asgiref==3.3.4
 beautifulsoup4==4.8.0
-bert-dp @ git+https://github.com/deepmipt/bert.git@741d9bed9d52c6a9409ca27d8bf284615645618b
-billiard @ file:///home/zloy/.cache/pypoetry/artifacts/e2/f7/23/7bbe9418a6e0cbe8ffc8da29b8870a04576a341f317b696332b92658d1/billiard-3.6.4.0-py3-none-any.whl
-CacheControl==0.12.6
-cachy==0.3.0
-cairocffi @ file:///home/zloy/.cache/pypoetry/artifacts/11/36/5c/554e3f3b47023776346842caacdc1b9f1d75ca90010b438d964d9d6d60/cairocffi-1.2.0.tar.gz
-CairoSVG @ file:///home/zloy/.cache/pypoetry/artifacts/43/54/e0/5ab416f0f3c74a048b69dae13e0526d55f9017cc3459f2d8e05b7053d2/CairoSVG-2.5.2-py3-none-any.whl
-celery @ file:///home/zloy/.cache/pypoetry/artifacts/f1/bd/f0/cc4a348e085a7bd25f437b7fa7d5cadf1c236fd2337d3b4a88881d7505/celery-4.4.7-py2.py3-none-any.whl
-certifi @ file:///home/zloy/.cache/pypoetry/artifacts/c1/ee/ce/d7e3d78c6ee31f6da8986cc82d0380013f399486c1785022e7fc85df13/certifi-2020.12.5-py2.py3-none-any.whl
-cffi @ file:///home/zloy/.cache/pypoetry/artifacts/f3/01/ce/c145f80cd2c07429eb337a91c898e70a87cfd9860da663f654147147cf/cffi-1.14.5-cp36-cp36m-manylinux1_x86_64.whl
-chardet @ file:///home/zloy/.cache/pypoetry/artifacts/c2/3b/63/971f239ca7732eecf7fea28a8e586dd0a8e983c0fc2a894d0ae19e3d05/chardet-3.0.4-py2.py3-none-any.whl
-cleo==0.8.1
+certifi==2020.12.5
+cffi==1.14.5
+chardet==3.0.4
+ci-info==0.2.0
 click==7.1.2
-clikit==0.6.2
-coreapi @ file:///home/zloy/.cache/pypoetry/artifacts/b5/50/c3/354c29bcfd568c06e9a23ce99af4de8ce952b861d20ad9321396154ee6/coreapi-2.3.3-py2.py3-none-any.whl
-coreschema==0.0.4
-coverage @ file:///home/zloy/.cache/pypoetry/artifacts/51/c5/af/27ff0b7f4cbeafd9e46a3ec927795fdf0885d491ec7127ca493c608a3d/coverage-4.5.4-cp36-cp36m-manylinux1_x86_64.whl
-crashtest==0.3.1
+configobj==5.0.6
+configparser==5.0.2
+cPython==0.0.6
 cryptography==3.4.7
-cssselect2 @ file:///home/zloy/.cache/pypoetry/artifacts/2a/82/f8/de6973b0fb4c6b9b9a4d32971be34d28736bd56d8237ae34ee8f1f6805/cssselect2-0.4.1-py3-none-any.whl
+cycler==0.10.0
 Cython==0.29.14
-dataclasses==0.8
-dateparser @ file:///home/zloy/.cache/pypoetry/artifacts/9c/ee/d0/330ab5b62dbbbe00f06c2d8bd567fe6359bb06b6bf29cceec7e8a73469/dateparser-1.0.0-py2.py3-none-any.whl
 DAWG-Python==0.7.2
-decorator @ file:///home/zloy/.cache/pypoetry/artifacts/b6/c8/bd/01bf61d29061eab8050a77364a67a557285142a1210b1e36d369b9809d/decorator-5.0.5-py3-none-any.whl
-deepdiff @ file:///home/zloy/.cache/pypoetry/artifacts/51/b3/b5/821abff61575d38b874e6e5ef6f95d781c22934d1b8187360581dceec1/deepdiff-4.3.2-py3-none-any.whl
+decorator==4.4.2
 deeppavlov==0.14.1
-defusedxml @ file:///home/zloy/.cache/pypoetry/artifacts/39/7d/17/0e60ad1148917a45addfaf179073674572063d010cb07b5e95d4c89e1b/defusedxml-0.7.1-py2.py3-none-any.whl
-distlib==0.3.1
-dj-database-url @ file:///home/zloy/.cache/pypoetry/artifacts/35/30/aa/99c9a9d1585d4ee13784c512a073a88ff0677f75a0ded90ae90b12f01d/dj_database_url-0.5.0-py2.py3-none-any.whl
-Django @ file:///home/zloy/.cache/pypoetry/artifacts/e7/01/e5/e7d0aa25f4da098253ab974daae2ade732af32a087b293d7565f340b78/Django-2.2.20-py3-none-any.whl
-django-admin-sortable2 @ file:///home/zloy/.cache/pypoetry/artifacts/36/64/82/04d78a796514b7d1592172e9d871e889d59f814f9e5a50a2f9af9a64ab/django_admin_sortable2-0.7.8-py3-none-any.whl
-django-anymail @ file:///home/zloy/.cache/pypoetry/artifacts/1f/58/92/d89515381c7179a56f15ba4e1e915638ed953983f0ff6d94ce9cf1ceb5/django_anymail-7.2.1-py2.py3-none-any.whl
-django-autocomplete-light @ file:///home/zloy/.cache/pypoetry/artifacts/0b/42/c3/e61acd96b20493c74323660dc55420652617ef623289b0c5fa9c3828f6/django-autocomplete-light-3.8.2.tar.gz
-django-cacheops @ file:///home/zloy/.cache/pypoetry/artifacts/8e/f5/50/174154d9cc40be22dcf9d6aa6345e7d7e3e31bd45f856c22da6a79ec70/django_cacheops-4.2-py2.py3-none-any.whl
-django-cors-headers @ file:///home/zloy/.cache/pypoetry/artifacts/a7/10/fa/a61bec8990269c01e9ce67a4fce797f27dc6687e0346e1c4b2360058a3/django_cors_headers-2.5.3-py2.py3-none-any.whl
-django-csrf-view @ file:///home/zloy/.cache/pypoetry/artifacts/89/9c/06/3e0e5b512e406ee58edbbbcd8c5ba4b6f0cf0967e5a6eb638efaf05f1e/django_csrf_view-0.1.0-py3-none-any.whl
-django-debug-toolbar @ file:///home/zloy/.cache/pypoetry/artifacts/b2/8c/fc/9127ca9f714137b013f56dc3a19b3f062ab72abd0da67ac9bdb8b8ce76/django_debug_toolbar-1.11-py2.py3-none-any.whl
-django-filer @ file:///home/zloy/.cache/pypoetry/artifacts/55/57/8d/e9e7c13b1c4f747a42a081066030fd8d6da1c167b2ef1bffd4219c16d8/django-filer-1.7.1.tar.gz
-django-js-asset @ file:///home/zloy/.cache/pypoetry/artifacts/84/aa/dc/2b4ede006b67052378349b6d563307729e4ff2dbe8e87641859d0d7eed/django_js_asset-1.2.2-py2.py3-none-any.whl
-django-json-widget @ file:///home/zloy/.cache/pypoetry/artifacts/05/73/3a/c628db7f683e0a5bddc0217b8b8c328599604560339fc70c483950817f/django_json_widget-0.2.0-py2.py3-none-any.whl
-django-mptt @ file:///home/zloy/.cache/pypoetry/artifacts/fe/4c/1e/cc31aea5256f1ad01d2cc179e1ba62560ef4758fd4a52570687eacd72a/django_mptt-0.12.0-py2.py3-none-any.whl
-django-nested-admin @ file:///home/zloy/.cache/pypoetry/artifacts/88/1f/7e/f1bc076b7a4b81fff3c4fe387c19e4c079b64447b726cf3bae471e9963/django_nested_admin-3.3.3-py2.py3-none-any.whl
-django-polymorphic @ file:///home/zloy/.cache/pypoetry/artifacts/04/1e/aa/d145c1bb33b54fea914a5ecf1277b427c4630382a9af9a5ce630783dfa/django_polymorphic-2.1.2-py2.py3-none-any.whl
-django-redis @ file:///home/zloy/.cache/pypoetry/artifacts/cf/86/60/225f1b732ef73fcd9f21032b4a703a5208fe66dad50c9fa9a2404cbfe0/django_redis-4.12.1-py3-none-any.whl
-django-solo @ file:///home/zloy/.cache/pypoetry/artifacts/a5/48/d3/163b751adec16d3b5d51574853285e0dc9a5143db03085fe7470e50c9e/django-solo-1.1.5.tar.gz
-djangorestframework @ file:///home/zloy/.cache/pypoetry/artifacts/d1/fd/2b/7c589635d7d131e50dec52d5707ea1dc1afce6f9318af26552ffac5380/djangorestframework-3.12.4-py3-none-any.whl
+dj-database-url==0.5.0
+Django==3.2
 docopt==0.6.2
 docx2txt==0.8
-dodgy @ file:///home/zloy/.cache/pypoetry/artifacts/71/e6/a6/a8f3da9613d06f75e07ab68aedd82290243ffaf9a326dcde1e4abed476/dodgy-0.2.1-py3-none-any.whl
-drf-yasg @ file:///home/zloy/.cache/pypoetry/artifacts/a0/ce/42/075002af4d955bfd2d5a005a4ffd361363513913cfc6f814b7c64dca4b/drf_yasg-1.20.0-py2.py3-none-any.whl
-easy-thumbnails @ file:///home/zloy/.cache/pypoetry/artifacts/35/26/5d/38c4f91d6c8d7039486616303a7f21c2ad56f7291b40c9ee5e5bf5cd0e/easy-thumbnails-2.7.1.tar.gz
 EbookLib==0.17.1
-et-xmlfile==1.0.1
+etelemetry==0.2.2
 extract-msg==0.23.1
 fastapi==0.47.1
 filelock==3.0.12
-funcy @ file:///home/zloy/.cache/pypoetry/artifacts/f9/f4/3a/a2606bd79c3d041635a4604f5662e1cf506e83e1a5d2bfdef4de93da19/funcy-1.15-py2.py3-none-any.whl
-gast==0.2.2
-google-pasta==0.2.0
-greenlet @ file:///home/zloy/.cache/pypoetry/artifacts/83/e9/24/6ebe2fa7153f64012a9c838923d70f3885aed64d1bff9f387344b7bee6/greenlet-1.0.0-cp36-cp36m-manylinux2010_x86_64.whl
-grpcio==1.36.1
-gunicorn @ file:///home/zloy/.cache/pypoetry/artifacts/32/38/2d/96e0a6f9c868892ed9a0cfdd5c6c681a0dd848ed7decfe5447decdf4e3/gunicorn-19.10.0-py2.py3-none-any.whl
+fitz==0.0.1.dev2
+frontend==0.0.3
 h11==0.9.0
 h5py==2.10.0
-html5lib @ file:///home/zloy/.cache/pypoetry/artifacts/9e/00/aa/e9e4de0b70f50a872aaa2318e1f59b51bc22207920be4325a33070af2c/html5lib-1.1-py2.py3-none-any.whl
+httplib2==0.19.1
 httptools==0.1.1
-idna @ file:///home/zloy/.cache/pypoetry/artifacts/c3/33/44/baaf54c7c2b3542521c8953b38a04a24694959a9d1b4130a37d59d5357/idna-2.8-py2.py3-none-any.whl
+idna==2.8
 IMAPClient==2.1.0
-importlib-metadata @ file:///home/zloy/.cache/pypoetry/artifacts/e8/2c/bc/bd88ab4d457dd6161cb9b0888fcf0d916e33c0c8b05c3341110127f148/importlib_metadata-3.10.0-py3-none-any.whl
-importlib-resources==5.1.2
-inflection @ file:///home/zloy/.cache/pypoetry/artifacts/0b/35/79/d78bb2a7e69e85e570e00fab9dd955266119d4a7b9c254d6cf7cf2a622/inflection-0.5.1-py2.py3-none-any.whl
 intervaltree==3.1.0
-ipdb @ file:///home/zloy/.cache/pypoetry/artifacts/1f/0d/4b/3e9b5337a15b770c4bb5fd440b2353da0fc06dc1e6ff0918a570c21a83/ipdb-0.12.3.tar.gz
 ipymarkup==0.9.0
-ipython @ file:///home/zloy/.cache/pypoetry/artifacts/25/d6/de/237ad5e66121539af65029c87640eb5362451a44d104a02585c605691f/ipython-7.6.1-py3-none-any.whl
-ipython-genutils @ file:///home/zloy/.cache/pypoetry/artifacts/5b/f2/9f/2ca629dcdfdfd0175007fd945ff0dd789fff6e7f5d0e6d7fb1ccd52edf/ipython_genutils-0.2.0-py2.py3-none-any.whl
-isort @ file:///home/zloy/.cache/pypoetry/artifacts/8e/f8/ba/40f378c10b229712b9eb50a2c332aefd7ece1d5e1984caea6e24beb31d/isort-4.3.21-py2.py3-none-any.whl
-itypes @ file:///home/zloy/.cache/pypoetry/artifacts/29/51/c4/8421378f425e68a3058ebfedfda88eaf75db8cd59474cf19d065028318/itypes-1.2.0-py2.py3-none-any.whl
-jdcal @ file:///home/zloy/.cache/pypoetry/artifacts/ee/37/5b/17609ed93b76fb48163bb8322f21069ff5b25667e8713e3316f648b8f1/jdcal-1.4.1-py2.py3-none-any.whl
-jedi @ file:///home/zloy/.cache/pypoetry/artifacts/66/7f/97/543f4db99a9faa29fa52b66ab96d091266e1b7be42c8f58d5434e304fa/jedi-0.18.0-py2.py3-none-any.whl
-jeepney==0.6.0
-jet-bridge-base @ file:///home/zloy/.cache/pypoetry/artifacts/81/95/8a/d77f5e74b469994b184817bb70e6c06511e8d7a01654ef8b5b801caab6/jet_bridge_base-0.6.6-py3-none-any.whl
-jet-django==0.8.9
-Jinja2 @ file:///home/zloy/.cache/pypoetry/artifacts/8a/4b/85/47c1e9cf8f99cae07aa657adae1e54f4e18d4b2e30871ac3fc57f83439/Jinja2-2.11.3-py2.py3-none-any.whl
+isodate==0.6.0
+itsdangerous==1.1.0
 joblib==1.0.1
-Keras-Applications==1.0.8
-Keras-Preprocessing==1.1.2
-keyring==21.8.0
-kombu @ file:///home/zloy/.cache/pypoetry/artifacts/f4/d2/80/2c65adfab5b5f5370792c281f69e7cbc7a0b9a2cb6d5a40a6763f91e93/kombu-4.6.11-py2.py3-none-any.whl
-lazy-object-proxy @ file:///home/zloy/.cache/pypoetry/artifacts/1d/c8/53/651ca26c4aee3f8859ae8f5a567d2bbcee09ef2574ed3d895ff840167d/lazy_object_proxy-1.6.0-cp36-cp36m-manylinux1_x86_64.whl
-lockfile==0.12.2
-lxml @ file:///home/zloy/.cache/pypoetry/artifacts/9e/6c/df/dbc3d3c898a36d0252da2ffe61d174e0631c4408d976b28d6ac5e46fe5/lxml-4.6.3-cp36-cp36m-manylinux1_x86_64.whl
-Markdown==3.3.4
-MarkupSafe @ file:///home/zloy/.cache/pypoetry/artifacts/b0/54/79/7b535a2c5dedbf6cb1b269d321c1de0ab4bbb2d9d4e46537151005f65c/MarkupSafe-1.1.1-cp36-cp36m-manylinux2010_x86_64.whl
-mccabe @ file:///home/zloy/.cache/pypoetry/artifacts/1e/5b/32/e78ec93754c8a551ba3672cd8324dfb4f298d5b0d2c111f7633a018b81/mccabe-0.6.1-py2.py3-none-any.whl
-msgpack==1.0.2
+kiwisolver==1.3.1
+lxml==4.6.3
+matplotlib==3.4.1
 multidict==5.1.0
-mypy @ file:///home/zloy/.cache/pypoetry/artifacts/11/27/1a/6793e33153d22a32d8fbe7948cf3554bab38fb3378980452ee10e36c17/mypy-0.670-py3-none-any.whl
-mypy-extensions @ file:///home/zloy/.cache/pypoetry/artifacts/95/d1/f7/27a186204e28c343803d003d5d6e3060731a2dabcfaa566a81411fc5e8/mypy_extensions-0.4.3-py2.py3-none-any.whl
 natasha==1.4.0
 navec==0.10.0
-nltk==3.5
+networkx==2.5.1
+nibabel==3.2.1
+nipype==1.6.0
+nltk==3.4.5
 numpy==1.18.0
 olefile==0.46
-opencv-python @ file:///home/zloy/.cache/pypoetry/artifacts/79/dc/24/5baeec820b44bd1d38e9bd3547be75b1cad77a282f0883261af4a82e1a/opencv_python-4.5.1.48-cp36-cp36m-manylinux2014_x86_64.whl
-openpyxl @ file:///home/zloy/.cache/pypoetry/artifacts/73/77/57/2dce8b8d39e24acdf45d2265a0819dd3747e5ea5c3070bbb5539909695/openpyxl-2.6.4.tar.gz
-opt-einsum==3.3.0
-ordered-set @ file:///home/zloy/.cache/pypoetry/artifacts/42/43/58/4b786b11525e276a45e350fc7295fa45925e9df9db869e8e77a5384c2d/ordered-set-4.0.2.tar.gz
+opencv-python==4.5.1.48
 overrides==2.7.0
-packaging @ file:///home/zloy/.cache/pypoetry/artifacts/57/88/b6/179033b9f12bc98625022000145dcb24ed8a4bbe3b588f6dbbcc398a0e/packaging-19.2-py2.py3-none-any.whl
+packaging==20.9
 pamqp==2.3.0
 pandas==0.25.3
-parso @ file:///home/zloy/.cache/pypoetry/artifacts/96/91/d5/897f0630d34d385ebfc133bab661a7feb523e9f0ae16ea8f81aa1947e6/parso-0.8.2-py2.py3-none-any.whl
-pastel==0.2.1
 pdfminer.six==20181108
-pep8-naming @ file:///home/zloy/.cache/pypoetry/artifacts/56/e2/83/9423d76849236c0bcfe496213286da49895462323bd2dfdf393b13b1b4/pep8_naming-0.4.1-py2.py3-none-any.whl
-pexpect @ file:///home/zloy/.cache/pypoetry/artifacts/fa/5c/3a/ef7a59789109057db3926031e09a69d4b940cc2d75ed97f18b25f7d13f/pexpect-4.8.0-py2.py3-none-any.whl
-pickleshare @ file:///home/zloy/.cache/pypoetry/artifacts/fb/8c/6b/7c81c64646ed796d6944cef3c5768f9fb1708a004da3e838e232f0ab4a/pickleshare-0.7.5-py2.py3-none-any.whl
-Pillow @ file:///home/zloy/.cache/pypoetry/artifacts/b4/c0/11/43d2c6de7496061a724434756891ca11739b3c545ba73714b36b19068b/Pillow-8.2.0-cp36-cp36m-manylinux1_x86_64.whl
+Pillow==8.2.0
 pkg-resources==0.0.0
-pkginfo==1.7.0
-poetry==1.1.5
-poetry-core==1.0.2
 prometheus-client==0.7.1
-prompt-toolkit @ file:///home/zloy/.cache/pypoetry/artifacts/93/f6/65/e4e4c68afdc4b211276e227832e673f9f27a30a64871dc9f1240a305eb/prompt_toolkit-2.0.9-py3-none-any.whl
-prospector @ file:///home/zloy/.cache/pypoetry/artifacts/22/c8/6f/d78c125735ec54370f8ad728810247ec6b54764956dbea13f7ecacda49/prospector-1.1.7.tar.gz
-protobuf==3.15.7
-psycopg2-binary @ file:///home/zloy/.cache/pypoetry/artifacts/b5/e0/e4/62b09c41ce8f0f1fffb6692fa0fd92504941eea5e94058fee00934cbd6/psycopg2_binary-2.8.6-cp36-cp36m-manylinux1_x86_64.whl
-ptyprocess @ file:///home/zloy/.cache/pypoetry/artifacts/30/0f/52/d09bc6246f61d7b85d5ff87916ce93da9d6650d25f902d6e82f1b3318c/ptyprocess-0.7.0-py2.py3-none-any.whl
-pycodestyle @ file:///home/zloy/.cache/pypoetry/artifacts/63/ba/d7/91aa04ac8034878cf2eb339a20a1b0791a4c1bbcab140670dd0544012e/pycodestyle-2.4.0-py2.py3-none-any.whl
-pycparser @ file:///home/zloy/.cache/pypoetry/artifacts/3b/b4/2e/87ea123a592747e6f6c798c66837974694db0bca4783357f71718a538d/pycparser-2.20-py2.py3-none-any.whl
+prov==2.0.0
+psycopg2-binary==2.8.6
+pycparser==2.20
 pycryptodome==3.10.1
 pydantic==1.3
-pydocstyle @ file:///home/zloy/.cache/pypoetry/artifacts/ed/fa/55/294243aff1e70161b41b2b66829b28ece6c1ec55d1a9e60f1e963696fa/pydocstyle-6.0.0-py3-none-any.whl
-pyflakes @ file:///home/zloy/.cache/pypoetry/artifacts/64/c6/1c/cbe85c48caedef37866989bf35813a9d2678ca7c1b05be4d385a84f262/pyflakes-1.6.0-py2.py3-none-any.whl
-Pygments @ file:///home/zloy/.cache/pypoetry/artifacts/16/5c/ae/0b44642afc1f3cdc1d195bd017753aa19e4d5540648654aff7c251ffc9/Pygments-2.8.1-py3-none-any.whl
-pylev==1.3.0
-pylint @ file:///home/zloy/.cache/pypoetry/artifacts/e0/60/42/42f8d0b36edde94a17addede69b750916cd34e91b840b6c7763e468268/pylint-2.3.1-py3-none-any.whl
-pylint-celery==0.3
-pylint-django @ file:///home/zloy/.cache/pypoetry/artifacts/61/c4/4e/5508a889f171e979c5ae09e7888de60043d7936109bc46650bc2871d87/pylint_django-2.0.10-py3-none-any.whl
-pylint-flask==0.6
-pylint-plugin-utils @ file:///home/zloy/.cache/pypoetry/artifacts/af/8f/8a/a29f92ecbc6010c695ad2aeb630df754e59540b0c48c26f3c51c1eeb2e/pylint_plugin_utils-0.6-py3-none-any.whl
-pymorphy2==0.9.1
+pydot==1.4.2
+pymongo==3.11.3
+pymorphy2==0.8
 pymorphy2-dicts==2.4.393442.3710985
 pymorphy2-dicts-ru==2.4.417127.4579844
 pyOpenSSL==19.1.0
-pyparsing @ file:///home/zloy/.cache/pypoetry/artifacts/d6/f5/d4/a3ac87f4cf557a0560e3be043de055641989812cc680588a262d0e093c/pyparsing-2.4.7-py2.py3-none-any.whl
-Pyphen @ file:///home/zloy/.cache/pypoetry/artifacts/98/64/2e/069f8aec67ba1d6b1cc7370392816b03cb59fa4bfc3497aea99b5b666c/Pyphen-0.10.0-py3-none-any.whl
+pyparsing==2.4.7
 pyTelegramBotAPI==3.6.7
 pytesseract==0.3.7
-python-dateutil @ file:///home/zloy/.cache/pypoetry/artifacts/21/0f/2e/d0431e5b008e4e2b8cccfe0df2ffdc8f88c56dc4dd32fadc23a0602017/python_dateutil-2.8.1-py2.py3-none-any.whl
+python-dateutil==2.8.1
 python-docx==0.8.10
-python-monkey-business @ file:///home/zloy/.cache/pypoetry/artifacts/80/cd/e3/3a541a4401c6ad107128816884b291832995cdcc2f3788bbbe0aabf799/python_monkey_business-1.0.0-py2.py3-none-any.whl
 python-pptx==0.6.18
-pytz @ file:///home/zloy/.cache/pypoetry/artifacts/2f/fd/8d/6f92b2ac5fafc0a069f35c9ae4d4e32c7ccadb82a5d6a3d65617e25000/pytz-2019.1-py2.py3-none-any.whl
-PyYAML @ file:///home/zloy/.cache/pypoetry/artifacts/e2/40/65/f5293f417f28bd955b8dfef34e3c8e02bb12c425b77b331384e88c2225/PyYAML-5.4.1-cp36-cp36m-manylinux1_x86_64.whl
-raven @ file:///home/zloy/.cache/pypoetry/artifacts/26/34/19/6c10c200d253195f8f223ce742a9f0249857c7c02ee545963d1d49b238/raven-6.10.0-py2.py3-none-any.whl
+pytils==0.3
+pytz==2019.1
+pyxnat==1.3
 razdel==0.5.0
-redis @ file:///home/zloy/.cache/pypoetry/artifacts/83/0c/56/e920edf18adf0a5a8041f073554e527f91870b43096cefa9e2750a4d3e/redis-3.5.3-py2.py3-none-any.whl
-regex @ file:///home/zloy/.cache/pypoetry/artifacts/f2/4f/25/410a3844f4d8071645a9c6ba045be976937f60037ac9f2658333e865ed/regex-2021.4.4-cp36-cp36m-manylinux2014_x86_64.whl
-requests @ file:///home/zloy/.cache/pypoetry/artifacts/7c/89/1e/95a4f099c3d316d565a2f00c123050cffe1cd5ddf0a599b346e33201d1/requests-2.22.0-py2.py3-none-any.whl
-requests-toolbelt==0.9.1
-requirements-detector @ file:///home/zloy/.cache/pypoetry/artifacts/f6/2e/22/ea295b6acdcec8afcfd8e79c0a43366b67d89e538e9a00cc54429ab3d3/requirements-detector-0.7.tar.gz
-ruamel.yaml @ file:///home/zloy/.cache/pypoetry/artifacts/25/31/4d/d22907edfe520b096bd49d9565fae51a6784e3744ab60b8022e3dccd59/ruamel.yaml-0.15.100-cp36-cp36m-manylinux1_x86_64.whl
+rdflib==5.0.0
+requests==2.22.0
+ruamel.yaml==0.15.100
 rusenttokenize==0.0.5
 sacremoses==0.0.35
 scikit-learn==0.21.2
 scipy==1.4.1
-SecretStorage==3.3.1
-setoptconf==0.2.0
-shellingham==1.4.0
-six @ file:///home/zloy/.cache/pypoetry/artifacts/8f/ad/07/430874bae6abec03a479f691b997b77007c7bc86b26ab26d01f981a83e/six-1.15.0-py2.py3-none-any.whl
+simplejson==3.17.2
+six==1.12.0
 slovnet==0.5.0
-snowballstemmer @ file:///home/zloy/.cache/pypoetry/artifacts/ee/73/e2/94ddb1687ed48f9eacd5ced21c870d37251a3be365fe00fa006f491792/snowballstemmer-2.1.0-py2.py3-none-any.whl
 sortedcontainers==2.3.0
 soupsieve==2.2.1
 SpeechRecognition==3.8.1
-SQLAlchemy @ file:///home/zloy/.cache/pypoetry/artifacts/c4/ea/df/23a117d586b055d72f1b06de89b8eff56adc55f7e0a7fceb01b988b180/SQLAlchemy-1.4.6-cp36-cp36m-manylinux2014_x86_64.whl
-sqlparse @ file:///home/zloy/.cache/pypoetry/artifacts/60/b2/50/69e6fbb1c178c5fdb7792565c5f1f43c7f5e666dca3df817723ae1bdff/sqlparse-0.4.1-py3-none-any.whl
+sqlparse==0.4.1
 starlette==0.12.9
-tensorboard==1.15.0
-tensorflow==1.15.2
-tensorflow-estimator==1.15.1
-termcolor==1.1.0
 textract==1.6.3
-tinycss2 @ file:///home/zloy/.cache/pypoetry/artifacts/c8/a3/4c/a1045108e29c2e53432fd754b73fbf17cc3ff13c81a5fc0f448bbe3bfd/tinycss2-1.1.0-py3-none-any.whl
-tomlkit==0.7.0
-tqdm==4.60.0
-traitlets @ file:///home/zloy/.cache/pypoetry/artifacts/3c/44/22/f2d55b6947829bd741d8454dfea30c422248dcb85267a005646bcb7c09/traitlets-4.3.2-py2.py3-none-any.whl
-typed-ast @ file:///home/zloy/.cache/pypoetry/artifacts/35/36/ac/607f1cb4cfd455af6f346b28ce9fc071a1c4ce3a5723ef1e129a882e0f/typed_ast-1.3.5-cp36-cp36m-manylinux1_x86_64.whl
-typing-extensions==3.7.4.3
-tzlocal @ file:///home/zloy/.cache/pypoetry/artifacts/63/fe/32/eedc23f7126558718cdd06d5acd5bf59bbe041e9b1de746bea6688f839/tzlocal-2.1-py2.py3-none-any.whl
-Unidecode @ file:///home/zloy/.cache/pypoetry/artifacts/13/2d/a1/9d7283e9dbf90850e4f55fa27933539cd1e00f6673b7c156ab06122eab/Unidecode-1.1.2-py2.py3-none-any.whl
-uritemplate @ file:///home/zloy/.cache/pypoetry/artifacts/8b/b7/4e/9276d049dc5ba40dedb778a1accb69d8374f0eab48dac3f86f530e6525/uritemplate-3.0.1-py2.py3-none-any.whl
-urllib3 @ file:///home/zloy/.cache/pypoetry/artifacts/4f/36/5c/11fecd1483c88bdcdf995ccd40f5eebb9fddc02ccf6ffa404ce1182044/urllib3-1.25.11-py2.py3-none-any.whl
+tools==0.1.9
+tqdm==4.41.1
+traits==6.2.0
+tzlocal==1.5.1
+urllib3==1.25.11
 uvicorn==0.11.7
 uvloop==0.14.0
-vine @ file:///home/zloy/.cache/pypoetry/artifacts/40/e3/69/6b38adf643fe360ec2de2d3049262f97e360f1946781ff84c4537638f5/vine-1.3.0-py2.py3-none-any.whl
-virtualenv==20.4.3
-wcwidth @ file:///home/zloy/.cache/pypoetry/artifacts/36/c8/d2/e0db95fba38e4224df88290e753cf2ff97a21ca91dbb726439b6055869/wcwidth-0.2.5-py2.py3-none-any.whl
-WeasyPrint @ file:///home/zloy/.cache/pypoetry/artifacts/65/c4/bf/417885077e3615f51759c89d91ba4cb215a9d466c7be661251b8e484b5/WeasyPrint-47-py3-none-any.whl
-webencodings==0.5.1
 websockets==8.1
-Werkzeug==1.0.1
-wrapt @ file:///home/zloy/.cache/pypoetry/artifacts/ba/41/37/e09c34de417d6f72e9154243848ecc10c5f7634bd8217afae5eb916621/wrapt-1.12.1.tar.gz
 xlrd==1.2.0
 XlsxWriter==1.3.8
 yargy==0.15.0
 yarl==1.6.3
-zipp==3.4.1
