@@ -64,7 +64,7 @@ def get_feedback(document, image_name, mode):  # Получение(со ска�
             pix1 = None
     k1 = cv2.imread(img)
     gray = cv2.cvtColor(k1, cv2.COLOR_BGR2GRAY)
-    #threshold = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)[1]
+    # threshold = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)[1]
     imn = image_name + '.jpeg'
     cv2.imwrite(imn, gray)
 
@@ -125,7 +125,7 @@ def find_profile(text):
         else:
             start_text = text.find('филь')
             end_text = text.find('студ')
-            p_name = text[start_text+4:end_text]
+            p_name = text[start_text + 4:end_text]
             print('Профиль:', p_name)
             return p_name
     except:
@@ -173,10 +173,9 @@ def find_faculty(text):
 
 
 def save_in_docx(data, dir, mode):  # сохраняем результат в Ворд файл
-    name = os.path.basename(dir[:dir.index('.')])
+    name = os.path.basename(dir.split('.')[-1])
     file = '@{}{}.docx'.format(mode, name)
     if os.path.isfile(file):
-        # print('Удаляем!!')
         os.remove(file)
     doc_save = docx.Document()
     for item in data:
@@ -189,25 +188,24 @@ def load_docx_link(
     paths = []
     for root, dirs, files in os.walk(folder):
         for file in files:
-            if (file.name.split('.')[-1] =='docx' or file.name.split('.')[-1] == 'doc' or file.name.split('.')[-1] =='pdf') and not file.startswith(
-                    '~') and not file.startswith(
-                    '@'):
+            if (file.name.split('.')[-1] == 'docx' or file.name.split('.')[-1] == 'doc' or file.name.split('.')[
+                -1] == 'pdf') and not file.startswith('~') and not file.startswith('@'):
                 paths.append(os.path.join(root, file))
     return paths
 
 
 def text_or_scan(file):  # проверка документа на наличие скана в первой странице
     text = None
-    if file.name.split('.')[-1] =='doc':
+    if file.name.split('.')[-1] == 'doc':
         text = text_from_doc(file).splitlines()
         text = ' '.join(text).lower()
         print('это doc')
-    elif file.name.split('.')[-1] =='docx':
+    elif file.name.split('.')[-1] == 'docx':
         print('это docx')
         doc = docx.Document(file)
         text = text_from_docx(doc).splitlines()
         text = ' '.join(text).lower()
-    elif file.name.split('.')[-1] =='pdf':
+    elif file.name.split('.')[-1] == 'pdf':
         print('Это PDF!')
         doc = fitz.open(file)
         page1 = doc.loadPage(0)
@@ -293,14 +291,14 @@ def text_from_doc(path):  # чтение текста из .doc
 def process_scan(dir):  # обработка ворда, титульник которого в виде скана, а остальное текстовое
     data = []
     img_name = 'image1'  # path.splitext(path.basename(r'{}'.format(dir)))[0]
-    if dir.name.split('.')[-1] =='pdf':
+    if dir.name.split('.')[-1] == 'pdf':
         doc = fitz.open(dir)
         text = text_from_pdf(doc)
         # print(text)
         feedback_1 = get_feedback(doc, img_name, 'pdf')
         feedback_1 = feedback_1.replace('\n', ' ')
         # print(feedback_1)
-    elif dir.name.split('.')[-1] =='docx':
+    elif dir.name.split('.')[-1] == 'docx':
         doc = docx.Document(dir)
         text = text_from_docx(doc)
         feedback_1 = get_feedback(doc, img_name, 'docx')
@@ -312,25 +310,26 @@ def process_scan(dir):  # обработка ворда, титульник ко
     str_name = text_original[text_edit.find(
         'студ'):text_edit.find('руково')]  #
 
-    dict = {}
-    dict['ФИО'] = get_name_from_feedback1(str_name)
-    dict['Факультет'] = find_faculty(text_edit)
-    dict['Направление'] = find_direction(text_edit)
-    dict['Профиль'] = find_profile(text_edit)
-    dict['Тема ВКР'] = find_theme(text_edit)
-    dict['Частотный анализ слов'] = most_common_word(text)
-    data = make_data(dict)
+    dict = {
+        'ФИО': get_name_from_feedback1(str_name),
+        'Факультет': find_faculty(text_edit),
+        'Направление': find_direction(text_edit),
+        'Профиль': find_profile(text_edit),
+        'Тема ВКР': find_theme(text_edit),
+        'Частотный анализ слов': most_common_word(text)
+    }
+    # data = make_data(dict)
 
-    save_in_docx(data, dir, 'scan')
+    # save_in_docx(data, dir, 'scan')
     return dict
 
 
 def process_text(dir):  # обработка ворда состоящего только из текста
     data = []
-    if dir.name.split('.')[-1] =='doc':
+    if dir.name.split('.')[-1] == 'doc':
         text_edit = text_from_doc(dir).splitlines()
         print('это doc')
-    elif dir.name.split('.')[-1] =='docx':
+    elif dir.name.split('.')[-1] == 'docx':
         print('это docx')
         doc = docx.Document(dir)
         text_edit = text_from_docx(doc).splitlines()
@@ -352,7 +351,7 @@ def process_text(dir):  # обработка ворда состоящего т�
 
     data = make_data(dict)
 
-    save_in_docx(data, dir, 'text')
+    # save_in_docx(data, dir, 'text')
 
     return dict
 
@@ -371,6 +370,7 @@ def make_data(dict):
 
 def main(doc=None):
     print(type(doc))
+    print(doc)
     print('Модель построена')
 
     directory = os.getcwd()
@@ -382,24 +382,11 @@ def main(doc=None):
               encoding="utf-8") as file_handler:  # добавление стоп слов из файла
         for line in file_handler:
             russian_stopwords.extend([line.rstrip()])
-    if doc:
-        if not text_or_scan(doc):
-            data = process_scan(doc)
-        else:
-            data = process_text(doc)
+
+    if not text_or_scan(doc):
+        data = process_scan(doc)
     else:
-        os.chdir(folder)
-        paths = load_docx_link(folder)
-        print(paths)
-        for dir in paths:  # пробегаемся по всем word файлам в папке folder
-            print(dir)
-            if not text_or_scan(dir):
-                print('Это скан!!!')
-                process_scan(dir)
-            else:
-                print('Это текст!!')
-                process_text(dir)
-                print('\n----------------------------------------\n')
+        data = process_text(doc)
     return data
 
 

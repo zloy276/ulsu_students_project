@@ -6,17 +6,31 @@ from django.db import models
 class Faculty(models.Model):
     name = models.CharField("Название", max_length=200, db_index=True)
 
+    class Meta:
+        verbose_name = 'Факультет'
+        verbose_name_plural = 'Факультеты'
 
-class Department(models.Model):
-    name = models.CharField("Название", max_length=200, db_index=True)
-    faculty = models.ForeignKey(
-        'Faculty', on_delete=models.CASCADE, verbose_name='Факультет')
+    def __str__(self):
+        return self.name
+
+
+# class Department(models.Model):
+#     name = models.CharField("Название", max_length=200, db_index=True)
+#     faculty = models.ForeignKey(
+#         'Faculty', on_delete=models.CASCADE, verbose_name='Факультет')
 
 
 class Direction(models.Model):
     name = models.CharField("Название", max_length=200, db_index=True)
-    department = models.ForeignKey(
-        'Department', on_delete=models.CASCADE, verbose_name='Кафедра')
+    faculty = models.ForeignKey(
+            'Faculty', on_delete=models.CASCADE, verbose_name='Факультет', null=True)
+
+    class Meta:
+        verbose_name = 'Специльность'
+        verbose_name_plural = 'Специльности'
+
+    def __str__(self):
+        return self.name
 
 
 class Student(models.Model):
@@ -27,10 +41,9 @@ class Student(models.Model):
     topic = models.CharField("Тема ВКР", max_length=200)
     words_cloud = ArrayField(models.CharField(
         max_length=200), blank=True, verbose_name="Облако слов", null=True)
-    document = models.ForeignKey(
-        'Document', on_delete=models.CASCADE, null=True)
-    report = models.ForeignKey(
-        'ProcessedDocument', on_delete=models.CASCADE, null=True)
+    document = models.FileField(upload_to='documents/', null=True)
+    # report = models.ForeignKey(
+    #     'ProcessedDocument', on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ('full_name',)
