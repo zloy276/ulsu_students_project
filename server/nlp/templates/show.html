@@ -1,5 +1,14 @@
 <!doctype html>
 <html>
-<p>Hello Mat</p>
-
+<dl>
+    <dt>ФИО: <dd>{{ student.full_name }}</dd></dt>
+    <dt>Факультет: <dd>{{ student.direction.faculty }}</dd></dt>
+    <dt>Профиль: <dd>{{ student.profile }}</dd></dt>
+    <dt>Тема ВКР:<dd>{{ student.topic }}</dd></dt>
+    <dt>Облако слов:
+        {% for word in student.words_cloud %}
+        <dd>{{ word }},</dd>
+        {% endfor %}
+    </dt>
+</dl>
 </html>
