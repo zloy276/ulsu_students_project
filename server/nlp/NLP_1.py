@@ -37,6 +37,7 @@ morph_tagger = NewsMorphTagger(emb)
 syntax_parser = NewsSyntaxParser(emb)
 ner_tagger = NewsNERTagger(emb)
 names_extractor = NamesExtractor(morph_vocab)
+ner_model = build_model(configs.ner.ner_rus_bert, download=False)
 
 
 def get_feedback(document, image_name, mode):  # Получение(со скана) текста
@@ -182,6 +183,16 @@ def save_in_docx(data, dir, mode):  # сохраняем результат в �
         doc_save.add_paragraph(item)
     doc_save.save(file)
 
+def depart_find(text):
+    try:
+        start_text = text.find('кафедра')
+        end_text = text.find('допус')
+        dep_name = text[start_text + 7:end_text]
+        return dep_name
+    except:
+        print('Кафедра: Error')
+        return 'Error'
+
 
 def load_docx_link(
         folder):  # загружаем все адреса word файлов из папки folder, исключаем временные файлы(~), и файлы начинающиеся на @
@@ -248,8 +259,7 @@ def most_common_word(text):  # частотный словарь
         normal_dict = {}
         for i in range(len(doc_words) - 1):
             doc2_words.append(doc_words[i] + ' ' + doc_words[i + 1])
-            doc2_words_normal.append(
-                doc_words_normal[i] + ' ' + doc_words_normal[i + 1])
+            doc2_words_normal.append(doc_words_normal[i] + ' ' + doc_words_normal[i + 1])
             lemma = doc_words[i] + ' ' + doc_words[i + 1]
             normal = doc_words_normal[i] + ' ' + doc_words_normal[i + 1]
             normal_dict.update({lemma: normal})
@@ -261,10 +271,12 @@ def most_common_word(text):  # частотный словарь
         for word in c2.most_common(15):
             word_cloud += normal_dict.get(word[0]) + '\n'
             # print(word[0])
-            print(normal_dict.get(word[0]))
+            #print(normal_dict.get(word[0]))
+        print(word_cloud)
 
         return word_cloud
-    except:
+    except Exception as e:
+        print(e)
         return 'Error'
 
 
@@ -313,6 +325,7 @@ def process_scan(dir):  # обработка ворда, титульник ко
     dict = {
         'ФИО': get_name_from_feedback1(str_name),
         'Факультет': find_faculty(text_edit),
+        'Кафедра': depart_find(text_edit),
         'Направление': find_direction(text_edit),
         'Профиль': find_profile(text_edit),
         'Тема ВКР': find_theme(text_edit),
@@ -344,6 +357,7 @@ def process_text(dir):  # обработка ворда состоящего т�
     dict = {}
     dict['ФИО'] = get_name_from_feedback1(str_name)
     dict['Факультет'] = find_faculty(titul)
+    dict['Кафедра'] = depart_find(text_edit)
     dict['Направление'] = find_direction(titul)
     dict['Профиль'] = find_profile(titul)
     dict['Тема ВКР'] = find_theme(titul)
@@ -360,6 +374,7 @@ def make_data(dict):
     data = []
     data.append('ФИО: {}'.format(dict['ФИО']))
     data.append('Факультет: {}'.format(dict['Факультет']))
+    data.append('Кафедра: {}'.format(dict['Кафедра']))
     data.append('Направление: {}'.format(dict['Направление']))
     data.append('Профиль: {}'.format(dict['Профиль']))
     data.append('Тема ВКР: {}'.format(dict['Тема ВКР']))
@@ -377,6 +392,7 @@ def main(doc=None):
     folder = directory + '/Выпуск2019/Бакалавры_scans/'
 
     # стоп слова
+    global russian_stopwords
     russian_stopwords = stopwords.words("russian")
     with open('{}/stop_words.txt'.format(directory), 'r',
               encoding="utf-8") as file_handler:  # добавление стоп слов из файла
