@@ -35,11 +35,11 @@ def process_doc(request, pk):
     # document.save()
     print(data)
 
-    faculty = Faculty.objects.filter(name=data['Факультет'])[0]
+    faculty = Faculty.objects.filter(name=data['Факультет']).first()
     if not faculty:
         faculty = Faculty.object.create(name=data['Факультет'])
 
-    direction = Direction.objects.filter(name=data['Направление'], faculty=faculty)[0]
+    direction = Direction.objects.filter(name=data['Направление'], faculty=faculty).first()
     if not direction:
         direction = Direction.object.create(name=data['Направление'], faculty=faculty)
 
