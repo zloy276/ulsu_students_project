@@ -301,15 +301,12 @@ def text_from_doc(path):  # чтение текста из .doc
 
 
 def process_scan(dir):  # обработка ворда, титульник которого в виде скана, а остальное текстовое
-    data = []
     img_name = 'image1'  # path.splitext(path.basename(r'{}'.format(dir)))[0]
     if dir.name.split('.')[-1] == 'pdf':
         doc = fitz.open(dir)
         text = text_from_pdf(doc)
-        # print(text)
         feedback_1 = get_feedback(doc, img_name, 'pdf')
         feedback_1 = feedback_1.replace('\n', ' ')
-        # print(feedback_1)
     elif dir.name.split('.')[-1] == 'docx':
         doc = docx.Document(dir)
         text = text_from_docx(doc)
@@ -338,7 +335,6 @@ def process_scan(dir):  # обработка ворда, титульник ко
 
 
 def process_text(dir):  # обработка ворда состоящего только из текста
-    data = []
     if dir.name.split('.')[-1] == 'doc':
         text_edit = text_from_doc(dir).splitlines()
         print('это doc')
@@ -354,14 +350,14 @@ def process_text(dir):  # обработка ворда состоящего т�
     str_name = text_original[titul.find(
         'студент'):titul.find('руководитель')]  #
 
-    dict = {}
-    dict['ФИО'] = get_name_from_feedback1(str_name)
-    dict['Факультет'] = find_faculty(titul)
-    dict['Кафедра'] = depart_find(text_edit)
-    dict['Направление'] = find_direction(titul)
-    dict['Профиль'] = find_profile(titul)
-    dict['Тема ВКР'] = find_theme(titul)
-    dict['Частотный анализ слов'] = most_common_word(text_edit)
+    dict = {
+        'ФИО': get_name_from_feedback1(str_name),
+        'Факультет': find_faculty(titul),
+        'Кафедра': depart_find(text_edit),
+        'Направление': find_direction(titul),
+        'Профиль': find_profile(titul),
+        'Тема ВКР': find_theme(titul),
+        'Частотный анализ слов': most_common_word(text_edit)}
 
     data = make_data(dict)
 
@@ -371,15 +367,14 @@ def process_text(dir):  # обработка ворда состоящего т�
 
 
 def make_data(dict):
-    data = []
-    data.append('ФИО: {}'.format(dict['ФИО']))
-    data.append('Факультет: {}'.format(dict['Факультет']))
-    data.append('Кафедра: {}'.format(dict['Кафедра']))
-    data.append('Направление: {}'.format(dict['Направление']))
-    data.append('Профиль: {}'.format(dict['Профиль']))
-    data.append('Тема ВКР: {}'.format(dict['Тема ВКР']))
-    data.append('Частотный анализ слов:\n{}'.format(
-        dict['Частотный анализ слов']))
+    data = [
+        'ФИО: {}'.format(dict['ФИО']),
+        'Факультет: {}'.format(dict['Факультет']),
+        'Кафедра: {}'.format(dict['Кафедра']),
+        'Направление: {}'.format(dict['Направление']),
+        'Профиль: {}'.format(dict['Профиль']),
+        'Тема ВКР: {}'.format(dict['Тема ВКР']),
+        'Частотный анализ слов:\n{}'.format(dict['Частотный анализ слов'])]
     return data
 
 
@@ -389,7 +384,7 @@ def main(doc=None):
     print('Модель построена')
 
     directory = os.getcwd()
-    folder = directory + '/Выпуск2019/Бакалавры_scans/'
+    # folder = directory + '/Выпуск2019/Бакалавры_scans/'
 
     # стоп слова
     global russian_stopwords
