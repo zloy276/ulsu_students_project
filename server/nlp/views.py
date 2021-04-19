@@ -39,16 +39,16 @@ def process_doc(request, pk):
     if not faculty:
         faculty = Faculty.objects.create(name=data['Факультет'])
 
-    departament = Department.objects.filter(name=data['Кафедра'], faculty=faculty).first()
-    if not departament:
-        departament = Department.objects.create(name=data['Кафедра'], faculty=faculty)
+    department = Department.objects.filter(name=data['Кафедра'], faculty=faculty).first()
+    if not department:
+        department = Department.objects.create(name=data['Кафедра'], faculty=faculty)
 
-    direction = Direction.objects.filter(name=data['Направление'], faculty=faculty).first()
+    direction = Direction.objects.filter(name=data['Направление'], department=department).first()
     if not direction:
-        direction = Direction.objects.create(name=data['Направление'], faculty=faculty)
+        direction = Direction.objects.create(name=data['Направление'], department=department)
 
     student = Student.objects.create(full_name=data['ФИО'], direction=direction, profile=data['Профиль'],
-                                     topic=data['Тема ВКР'], departament=departament, document=doc.document)
+                                     topic=data['Тема ВКР'], document=doc.document)
 
     if data['Частотный анализ слов'] != 'Error':
         student.words_cloud = data['Частотный анализ слов']
