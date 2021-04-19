@@ -3,7 +3,7 @@ from django.core.files import File
 from django.shortcuts import render, redirect
 from .forms import DocumentForm
 from django.urls import reverse
-from .models import Faculty, Direction, Student, UploadedFile
+from .models import Faculty, Direction, Student, UploadedFile, Department
 from . import NLP_1
 
 
@@ -39,17 +39,19 @@ def process_doc(request, pk):
     if not faculty:
         faculty = Faculty.objects.create(name=data['Факультет'])
 
+    departament = Department.objects.filter(name=data['Кафедра'], faculty=faculty).first()
+    if not departament:
+        departament = Department.objects.create(name=data['Кафедра'], faculty=faculty)
+
     direction = Direction.objects.filter(name=data['Направление'], faculty=faculty).first()
     if not direction:
         direction = Direction.objects.create(name=data['Направление'], faculty=faculty)
 
-    print(direction)
-
     student = Student.objects.create(full_name=data['ФИО'], direction=direction, profile=data['Профиль'],
-                                     topic=data['Тема ВКР'], document=doc.document)
+                                     topic=data['Тема ВКР'], departament=departament, document=doc.document)
 
     if data['Частотный анализ слов'] != 'Error':
         student.words_cloud = data['Частотный анализ слов']
         student.save()
 
-    return render(request, 'show.html',{"student":student})
+    return render(request, 'show.html', {"student": student})
