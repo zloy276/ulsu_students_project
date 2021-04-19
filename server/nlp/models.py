@@ -14,16 +14,23 @@ class Faculty(models.Model):
         return self.name
 
 
-# class Department(models.Model):
-#     name = models.CharField("Название", max_length=200, db_index=True)
-#     faculty = models.ForeignKey(
-#         'Faculty', on_delete=models.CASCADE, verbose_name='Факультет')
+class Department(models.Model):
+    name = models.CharField("Название", max_length=200, db_index=True)
+    faculty = models.ForeignKey(
+        'Faculty', on_delete=models.CASCADE, verbose_name='Факультет')
+
+    class Meta:
+        verbose_name = 'Кафедра'
+        verbose_name_plural = 'Кафедры'
+
+    def __str__(self):
+        return self.name
 
 
 class Direction(models.Model):
     name = models.CharField("Название", max_length=200, db_index=True)
     faculty = models.ForeignKey(
-            'Faculty', on_delete=models.CASCADE, verbose_name='Факультет', null=True)
+        'Faculty', on_delete=models.CASCADE, verbose_name='Факультет', null=True)
 
     class Meta:
         verbose_name = 'Специльность'
@@ -39,9 +46,12 @@ class Student(models.Model):
         'Direction', on_delete=models.CASCADE, verbose_name="Направление", null=True)
     profile = models.CharField("Профиль", max_length=200)
     topic = models.CharField("Тема ВКР", max_length=200)
+    departament = models.ForeignKey(
+        'Department', on_delete=models.CASCADE, verbose_name="Кафедра", null=True)
     words_cloud = ArrayField(models.CharField(
         max_length=200), blank=True, verbose_name="Облако слов", null=True)
     document = models.FileField(upload_to='documents/', null=True)
+
     # report = models.ForeignKey(
     #     'ProcessedDocument', on_delete=models.CASCADE, null=True)
 
