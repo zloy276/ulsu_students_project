@@ -331,6 +331,7 @@ def process_scan(dir):  # обработка ворда, титульник ко
     # data = make_data(dict)
 
     # save_in_docx(data, dir, 'scan')
+    dict['Частотный анализ слов'] = dict['Частотный анализ слов'].splitlines()[1:]
     return dict
 
 
@@ -360,8 +361,9 @@ def process_text(dir):  # обработка ворда состоящего т�
         'Частотный анализ слов': most_common_word(text_edit)}
 
     data = make_data(dict)
-
     # save_in_docx(data, dir, 'text')
+
+    dict['Частотный анализ слов'] = dict['Частотный анализ слов'].splitlines()[1:]
 
     return dict
 
