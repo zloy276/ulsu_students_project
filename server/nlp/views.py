@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .forms import DocumentForm
 from django.urls import reverse
 from .models import Faculty, Direction, Student, UploadedFile, Department
-from . import NLP_1
+from . import algorithm
 from .signals import log_create
 
 
@@ -24,7 +24,7 @@ def model_form_upload(request):
 
 def process_doc(request, pk):
     doc = UploadedFile.objects.get(pk=pk)
-    data = NLP_1.main(doc.document)
+    data = algorithm.main(doc.document)
 
     # f = open(doc.document)
     # f = File(f)
@@ -58,3 +58,5 @@ def process_doc(request, pk):
     log_create(instance=student)
 
     return render(request, 'show.html', {"student": student})
+
+

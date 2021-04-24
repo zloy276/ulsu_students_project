@@ -89,7 +89,7 @@ class ProcessedDocument(models.Model):
 
 
 class Logs(models.Model):
-    student = models.ForeignKey('Students', on_delete=models.CASCADE, verbose_name="Студен", null=True)
+    student = models.ForeignKey('Student', on_delete=models.CASCADE, verbose_name="Студент", null=True)
     info = JSONField(verbose_name='вся инфа о студенте в json', null=True, blank=True)
 
     def __str__(self):

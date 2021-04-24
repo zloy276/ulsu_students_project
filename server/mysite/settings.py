@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'nlp',
+    'django_json_widget',
 ]
 
 MIDDLEWARE = [
