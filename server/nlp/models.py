@@ -1,5 +1,6 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 # Create your models here.
@@ -49,6 +50,7 @@ class Student(models.Model):
     words_cloud = ArrayField(models.CharField(
         max_length=200), blank=True, verbose_name="Облако слов", null=True)
     document = models.FileField(upload_to='documents/', null=True)
+    is_normal = models.BooleanField("Статус качества загрузки", default=True)
 
     # report = models.ForeignKey(
     #     'ProcessedDocument', on_delete=models.CASCADE, null=True)
@@ -84,3 +86,11 @@ class ProcessedDocument(models.Model):
 
     def __str__(self):
         return self.document.name
+
+
+class Logs(models.Model):
+    student = models.ForeignKey('Students', on_delete=models.CASCADE, verbose_name="Студен", null=True)
+    info = JSONField(verbose_name='вся инфа о студенте в json', null=True, blank=True)
+
+    def __str__(self):
+        return self.student.full_name
