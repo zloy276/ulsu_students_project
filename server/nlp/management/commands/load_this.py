@@ -9,6 +9,7 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        reader = csv.reader(os.path.join(os.getcwd(), 'file.csv'))
-        for row in reader:
-            print(row)
+        with open(os.path.join(os.getcwd(), 'file.csv'), "r") as f_obj:
+            reader = csv.reader(f_obj)
+            for row in reader:
+                print(row)
