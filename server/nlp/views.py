@@ -5,6 +5,7 @@ from .forms import DocumentForm
 from django.urls import reverse
 from .models import Faculty, Direction, Student, UploadedFile, Department
 from . import NLP_1
+from .signals import log_create
 
 
 def model_form_upload(request):
@@ -53,5 +54,7 @@ def process_doc(request, pk):
     if data['Частотный анализ слов'] != 'Error':
         student.words_cloud = data['Частотный анализ слов']
         student.save()
+
+    log_create(instance=student)
 
     return render(request, 'show.html', {"student": student})
