@@ -2,18 +2,16 @@
 import docx
 import fitz
 import textract
-import os
-import re
-from os import path
+import os, re, sklearn
+import numpy as np
+from joblib import load
 from PIL import Image
 import io
 import pytesseract
 import cv2
-import matplotlib.pyplot as plt
 import collections
 import re
 from deeppavlov import configs, build_model, train_model
-from deeppavlov.core.commands.utils import parse_config
 from nltk.corpus import stopwords
 from natasha import (
     Segmenter,
@@ -23,10 +21,8 @@ from natasha import (
     NewsMorphTagger,
     NewsSyntaxParser,
     NewsNERTagger,
-
     PER,
     NamesExtractor,
-
     Doc
 )
 
@@ -38,6 +34,8 @@ syntax_parser = NewsSyntaxParser(emb)
 ner_tagger = NewsNERTagger(emb)
 names_extractor = NamesExtractor(morph_vocab)
 ner_model = build_model(configs.ner.ner_rus_bert, download=False)
+directory = os.getcwd()
+model_recogn_prog_lang = load(directory + '/RandForestforDetectProgLang.joblib')
 
 
 def get_feedback(document, image_name, mode):  # Получение(со скана) текста
@@ -326,7 +324,8 @@ def process_scan(dir):  # обработка ворда, титульник ко
         'Направление': find_direction(text_edit),
         'Профиль': find_profile(text_edit),
         'Тема ВКР': find_theme(text_edit),
-        'Частотный анализ слов': most_common_word(text)
+        'Частотный анализ слов': most_common_word(text),
+        'Язык программирования': recognize_programming_language(text_edit)
     }
     # data = make_data(dict)
 
@@ -358,7 +357,9 @@ def process_text(dir):  # обработка ворда состоящего т�
         'Направление': find_direction(titul),
         'Профиль': find_profile(titul),
         'Тема ВКР': find_theme(titul),
-        'Частотный анализ слов': most_common_word(text_edit)}
+        'Частотный анализ слов': most_common_word(text_edit),
+        'Язык программирования': recognize_programming_language(text_edit)}
+    #print(recognize_programming_language(text_edit))
 
     data = make_data(dict)
     # save_in_docx(data, dir, 'text')
@@ -376,9 +377,67 @@ def make_data(dict):
         'Направление: {}'.format(dict['Направление']),
         'Профиль: {}'.format(dict['Профиль']),
         'Тема ВКР: {}'.format(dict['Тема ВКР']),
-        'Частотный анализ слов:\n{}'.format(dict['Частотный анализ слов'])]
+        'Частотный анализ слов:\n{}'.format(dict['Частотный анализ слов']),
+        'Язык программирования:{}'.format(dict['Язык программирования'])]
     return data
+def recognize_programming_language(text):
 
+    def match(text, alphabet=set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')):
+        # Проверка на вхождение русских букв в строке, если входят - возвращает True
+        return not alphabet.isdisjoint(text.lower())
+
+
+    def one_hot_coding(list_words, path_corpus):    # векторизация
+        math_corpus = {}
+        f = open(path_corpus, encoding='utf-8')
+        i = 0
+        for line in f:
+            line = line.replace('\n', '')
+            math_corpus[line] = i
+            i += 1
+        f.close()
+        keys = math_corpus.keys()
+        result = np.zeros(len(math_corpus))
+        for word in list_words:
+            if word in keys:
+                result[math_corpus[word]] = 1
+        return result.reshape(1, -1)
+
+    # Модель вынести из функции?, сменить путь до модели
+    #model_recogn_prog_lang = load(directory + '/RandForestforDetectProgLang.joblib')
+
+    text = re.sub('[.,()+*-/="\']', ' ', text)
+    text = re.sub('[;]', ' ;', text).split()
+    text_1gram, text_2gram = [], []
+    for element in text:
+        if not match(element) and not element.isdigit():
+            text_1gram.append(element)
+    for i in range(len(text_1gram) - 1):
+        text_2gram.append(text_1gram[i] + ' ' + text_1gram[i + 1])
+    text_1gram.extend(text_2gram)
+    # Сменить путь до корпуса
+    one_hot = one_hot_coding(text_1gram, directory + '/corpus_lang_prog.txt')
+    predict = model_recogn_prog_lang.predict(one_hot)
+    if predict == 0:
+        return 'С++'
+    elif predict == 1:
+        return 'Java'
+    elif predict == 2:
+        return 'Delphi'
+    elif predict == 3:
+        return 'C#'
+    elif predict == 4:
+        return 'JavaScript'
+    elif predict == 5:
+        return 'Python'
+    elif predict == 6:
+        return 'PHP'
+    elif predict == 7:
+        return 'Matlab'
+    elif predict == 8:
+        return 'Scilab'
+    elif predict == 9:
+        return 'Отсутствует'
 
 def main(doc=None):
     print(type(doc))
