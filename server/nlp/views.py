@@ -26,16 +26,6 @@ def process_doc(request, pk):
     doc = UploadedFile.objects.get(pk=pk)
     data = algorithm.main(doc.document)
 
-    # f = open(doc.document)
-    # f = File(f)
-    # document = models.Document.objects.create()
-    #
-    # document.upload_to = '{}/{}/documents/'.format(
-    #     data['Факультет'], data['Направление'])
-    # document.document = f
-    # document.save()
-    print(data)
-
     faculty = Faculty.objects.filter(name=data['Факультет']).first()
     if not faculty:
         faculty = Faculty.objects.create(name=data['Факультет'])
@@ -55,8 +45,8 @@ def process_doc(request, pk):
         student.words_cloud = data['Частотный анализ слов']
         student.save()
 
+    doc.is_processed = True
+    doc.save()
     log_create(instance=student)
 
     return render(request, 'show.html', {"student": student})
-
-

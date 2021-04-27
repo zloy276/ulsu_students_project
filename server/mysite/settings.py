@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nlp',
     'django_json_widget',
+    'django_daemon_command',
 ]
 
 MIDDLEWARE = [

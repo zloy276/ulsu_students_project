@@ -77,6 +77,7 @@ class UploadedFile(models.Model):
     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    is_processed=models.BooleanField(default=False)
 
 
 class ProcessedDocument(models.Model):
