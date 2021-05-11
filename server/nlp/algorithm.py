@@ -39,12 +39,12 @@ with open('stop_words.txt', 'r', encoding="utf-8") as file:
         russian_stopwords.append(line.rstrip())
 
 
-def main(doc):
-    data = process_document(doc=doc)
+def main(doc, mode='default'):
+    data = process_document(doc=doc, mode=mode)
     return data
 
 
-def process_document(doc):
+def process_document(doc, mode):
     doc_type = doc.name.split('.')[-1]
     if doc_type == 'docx':
         document = docx.Document(doc)
@@ -57,24 +57,27 @@ def process_document(doc):
     text = text.lower()
     if not text or not isscan(text):
         original = resolve_scan(document, doc_type=doc_type, text=original)
-    data = process_text(original)
+    data = process_text(original, mode)
 
     return data
 
 
-def process_text(text):
+def process_text(text, mode):
     original = text.replace('\n', ' ')
     text = original.lower()
-    title_page = text[text.find('ульяновский'):text.find('введение')]
-    dict = {
-        'ФИО': find_full_name(text, original),
-        'Факультет': find_faculty(title_page),
-        'Кафедра': find_department(title_page),
-        'Направление': find_direction(title_page),
-        'Профиль': find_profile(title_page),
-        'Тема ВКР': find_topic(title_page),
-        'Частотный анализ слов': find_most_common_word(text)
-    }
+    if (mode == 'default'):
+        title_page = text[text.find('ульяновский'):text.find('введение')]
+        dict = {
+            'ФИО': find_full_name(text, original),
+            'Факультет': find_faculty(title_page),
+            'Кафедра': find_department(title_page),
+            'Направление': find_direction(title_page),
+            'Профиль': find_profile(title_page),
+            'Тема ВКР': find_topic(title_page),
+            'Частотный анализ слов': find_most_common_word(text)
+        }
+    else:
+        dict = {'Частотный анализ слов': find_most_common_word(text)}
 
     return dict
 
@@ -218,7 +221,7 @@ def find_most_common_word(text):
         for word in doc2_words:
             c2[word] += 1
 
-        word_cloud=[normal_dict.get(word[0]) for word in c2.most_common(15)]
+        word_cloud = [normal_dict.get(word[0]) for word in c2.most_common(15)]
         print(word_cloud)
 
         return word_cloud
