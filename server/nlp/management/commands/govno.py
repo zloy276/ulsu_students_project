@@ -32,7 +32,7 @@ class Command(DaemonCommand):
             l.append(t)
         print(l[0])
         for i in l:
-            doc = UploadedFile.objects.filter(is_processed=False, document='documents/' + i['FILE_NAME'])
+            doc = UploadedFile.objects.filter(is_processed=False, document__icontains=i['FILE_NAME']).first()
             print('documents' + i['FILE_NAME'])
             if doc:
                 print('\n' * 100)
