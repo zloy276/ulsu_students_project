@@ -1,4 +1,9 @@
+import os
+
 from django_daemon_command.management.base import DaemonCommand
+from django.conf import settings
+
+from mysite.settings import BASE_DIR
 from nlp.models import Faculty, Direction, Student, UploadedFile, Department
 from nlp import algorithm
 from nlp.signals import log_create
@@ -11,35 +16,50 @@ class Command(DaemonCommand):
         self.daemonize()
 
     def process(self, *args, **options):
-        for doc in UploadedFile.objects.filter(is_processed=False):
+
+        file = open(os.path.join(settings.BASE_DIR, 'vkr.txt')).readlines()
+        d = file[0].replace('\n', '').split('\t')
+        l = list()
+        for i in file[1:200:]:
+            t = {}
+            f = i.replace('\n', '').split('\t')
+            f = list(filter(lambda x: x, f))
             try:
-                data = algorithm.main(doc.document)
+                for j in range(len(d)):
+                    t[d[j]] = f[j]
             except:
                 continue
+            l.append(t)
+        print(l[0])
+        for i in l:
+            doc = UploadedFile.objects.filter(is_processed=False, document='documents/' + i['FILE_NAME'])
+            print('documents' + i['FILE_NAME'])
+            if doc:
+                print('\n' * 100)
+                try:
+                    data = algorithm.main(doc.document, mode='govno')
+                except:
+                    continue
 
-            if len(data['Факультет']) > 150 or len(data['Кафедра']) > 150 or len(data['Направление']) > 150 or len(
-                    data['ФИО']) > 150 or len(data['Тема ВКР']) > 150 or len(data['Профиль']) > 150:
-                continue
+                faculty = Faculty.objects.filter(name=i['FACULTY']).first()
+                if not faculty:
+                    faculty = Faculty.objects.create(name=i['FACULTY'])
 
-            faculty = Faculty.objects.filter(name=data['Факультет']).first()
-            if not faculty:
-                faculty = Faculty.objects.create(name=data['Факультет'])
+                department = Department.objects.filter(name=i['CATHEDRA'], faculty=faculty).first()
+                if not department:
+                    department = Department.objects.create(name=i['CATHEDRA'], faculty=faculty)
 
-            department = Department.objects.filter(name=data['Кафедра'], faculty=faculty).first()
-            if not department:
-                department = Department.objects.create(name=data['Кафедра'], faculty=faculty)
+                direction = Direction.objects.filter(name=i['PROFILE'], department=department).first()
+                if not direction:
+                    direction = Direction.objects.create(name=i['PROFILE'], department=department)
 
-            direction = Direction.objects.filter(name=data['Направление'], department=department).first()
-            if not direction:
-                direction = Direction.objects.create(name=data['Направление'], department=department)
+                student = Student.objects.create(full_name=i['STUDENT'], direction=direction, profile=i['GRP'],
+                                                 topic=i['NAME'], document=doc.document)
 
-            student = Student.objects.create(full_name=data['ФИО'], direction=direction, profile=data['Профиль'],
-                                             topic=data['Тема ВКР'], document=doc.document)
+                if data['Частотный анализ слов'] != 'Error':
+                    student.words_cloud = data['Частотный анализ слов']
+                    student.save()
 
-            if data['Частотный анализ слов'] != 'Error':
-                student.words_cloud = data['Частотный анализ слов']
-                student.save()
-
-            doc.is_processed = True
-            doc.save()
-            log_create(instance=student)
+                doc.is_processed = True
+                doc.save()
+                log_create(instance=student)
