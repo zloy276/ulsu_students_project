@@ -20,7 +20,7 @@ class Command(DaemonCommand):
         file = open(os.path.join(settings.BASE_DIR, 'vkr.txt')).readlines()
         d = file[0].replace('\n', '').split('\t')
         l = list()
-        for i in file[1:200:]:
+        for i in file[1::]:
             t = {}
             f = i.replace('\n', '').split('\t')
             f = list(filter(lambda x: x, f))
