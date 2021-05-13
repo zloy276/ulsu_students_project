@@ -31,7 +31,10 @@ class Command(DaemonCommand):
                 continue
             l.append(t)
         for i in l:
-            doc = UploadedFile.objects.filter(is_processed=False, document__icontains=i['FILE_NAME']).first()
+            file_name = i['file_name'].split('.')
+            file_name = file_name[0]+file_name[1].lower()
+            doc = UploadedFile.objects.filter(is_processed=False, document='documents/'+file_name)
+
             if doc:
                 print('Файл найден')
                 try:
