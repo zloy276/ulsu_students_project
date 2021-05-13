@@ -30,15 +30,14 @@ class Command(DaemonCommand):
             except:
                 continue
             l.append(t)
-        print(l[0])
         for i in l:
-            doc = UploadedFile.objects.filter(is_processed=False, document='documents/' + i['FILE_NAME'])
-            print('documents' + i['FILE_NAME'])
+            doc = UploadedFile.objects.filter(is_processed=False, document__icontains=i['FILE_NAME']).first()
             if doc:
-                print('\n' * 100)
+                print('Файл найден')
                 try:
                     data = algorithm.main(doc.document, mode='govno')
                 except:
+                    print('Скрипт пошел по пизде')
                     continue
 
                 faculty = Faculty.objects.filter(name=i['FACULTY']).first()
@@ -63,3 +62,4 @@ class Command(DaemonCommand):
                 doc.is_processed = True
                 doc.save()
                 log_create(instance=student)
+            else: print('Файл не найден', i['FILE_NAME'])
