@@ -1,5 +1,5 @@
 import os
-from django.core.files.base import File
+from django.core.files.base import ContentFile
 from django_daemon_command.management.base import DaemonCommand
 from django.conf import settings
 import shutil
@@ -37,17 +37,20 @@ class Command(DaemonCommand):
             print(file_name)
             if file_name in file_list:
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
-                dj_file=File(doc)
                 print('Файл найден')
                 # shutil.copy(f'/home/nlp/app/server/media/vkr/{file_name}', f'/home/nlp/app/server/выборки/1_Выборка/{file_name}')
                 try:
                     data = algorithm.main(doc, mode='govno')
-                    if data=='doc':
+                    if data == 'doc':
                         print('ЭТО СРАНЫЙ DOC')
                         continue
                 except:
                     print('Алгоритм обосрался')
                     continue
+
+                doc.close()
+                dj_file = ContentFile(doc=open('/home/nlp/app/server/media/vkr/' + file_name, 'rb').read(),
+                                      name=i['FILE_NAME'])
 
                 faculty = Faculty.objects.filter(name=i['FACULTY']).first()
                 if not faculty:
@@ -69,8 +72,8 @@ class Command(DaemonCommand):
                     student.words_cloud = data['Частотный анализ слов']
                     student.save()
 
-                #doc.is_processed = True
-                #doc.save()
+                # doc.is_processed = True
+                # doc.save()
                 log_create(instance=student)
             else:
                 print('Файл не найден', i['FILE_NAME'])
