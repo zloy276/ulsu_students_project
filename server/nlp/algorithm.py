@@ -49,6 +49,7 @@ def process_document(doc, mode,file_name):
         doc_type = file_name.split('.')[-1]
     else:
         doc_type = doc.name.split('.')[-1]
+    print(file_name)
     if doc_type == 'docx':
         document = docx.Document(doc)
         text = ' '.join([paragraph.text for paragraph in document.paragraphs])
