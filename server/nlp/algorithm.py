@@ -46,12 +46,15 @@ def main(doc, mode='default'):
 
 def process_document(doc, mode):
     doc_type = doc.name.split('.')[-1]
+    print(doc_type)
     if doc_type.lower() == 'docx':
         document = docx.Document(doc)
         text = ' '.join([paragraph.text for paragraph in document.paragraphs])
     elif doc_type.lower() == 'pdf':
         document = fitz.open(stream=doc.read(), filetype='pdf')
         text = ' '.join([page.getText("text") for page in document])
+    elif doc_type.lower() == 'doc':
+        return 'doc'
 
     original = text
     text = text.lower()
