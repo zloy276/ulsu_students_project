@@ -39,7 +39,7 @@ class Command(DaemonCommand):
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
                 print('Файл найден')
                 # shutil.copy(f'/home/nlp/app/server/media/vkr/{file_name}', f'/home/nlp/app/server/выборки/1_Выборка/{file_name}')
-                data = algorithm.main(doc, mode='govno',file_name=file_name)
+                data = algorithm.main(doc, mode='govno')
 
                 faculty = Faculty.objects.filter(name=i['FACULTY']).first()
                 if not faculty:
