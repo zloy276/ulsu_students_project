@@ -34,6 +34,7 @@ class Command(DaemonCommand):
         for i in l:
             file_name = i['FILE_NAME'].split('.')
             file_name = f'{file_name[0]}.{file_name[1].lower()}'
+            print(file_name)
             if file_name in file_list:
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
                 print('Файл найден')
