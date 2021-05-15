@@ -37,6 +37,7 @@ class Command(DaemonCommand):
             print(file_name)
             if file_name in file_list:
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
+                dj_file=File(doc)
                 print('Файл найден')
                 # shutil.copy(f'/home/nlp/app/server/media/vkr/{file_name}', f'/home/nlp/app/server/выборки/1_Выборка/{file_name}')
                 try:
@@ -61,7 +62,7 @@ class Command(DaemonCommand):
                     direction = Direction.objects.create(name=i['PROFILE'], department=department)
 
                 student = Student.objects.create(full_name=i['STUDENT'], direction=direction, profile=i['GRP'],
-                                                 topic=i['NAME'], document=File(doc))
+                                                 topic=i['NAME'], document=dj_file)
 
                 if data['Частотный анализ слов'] != 'Error':
                     student.words_cloud = data['Частотный анализ слов']
