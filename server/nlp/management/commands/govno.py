@@ -35,9 +35,9 @@ class Command(DaemonCommand):
             file_name = i['FILE_NAME'].split('.')
             file_name = f'{file_name[0]}.{file_name[1].lower()}'
             if file_name in file_list:
-                doc = open('home/nlp/app/server/media/vkr/' + file_name)
+                doc = open('/home/nlp/app/server/media/vkr/' + file_name)
                 print('Файл найден')
-                shutil.copy(f'home/nlp/app/server/media/vkr/{file_name}', f'home/nlp/app/server/выборки/1_Выборка/{file_name}')
+                shutil.copy(f'/home/nlp/app/server/media/vkr/{file_name}', f'/home/nlp/app/server/выборки/1_Выборка/{file_name}')
                 try:
                     data = algorithm.main(doc, mode='govno',file_name=file_name)
                 except:
