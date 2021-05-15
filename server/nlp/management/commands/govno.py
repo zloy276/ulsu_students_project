@@ -39,9 +39,13 @@ class Command(DaemonCommand):
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
                 print('Файл найден')
                 # shutil.copy(f'/home/nlp/app/server/media/vkr/{file_name}', f'/home/nlp/app/server/выборки/1_Выборка/{file_name}')
-                data = algorithm.main(doc, mode='govno')
-                if data=='doc':
-                    print('ЭТО СРАНЫЙ DOC')
+                try:
+                    data = algorithm.main(doc, mode='govno')
+                    if data=='doc':
+                        print('ЭТО СРАНЫЙ DOC')
+                        continue
+                except:
+                    print('Алгоритм обосрался')
                     continue
 
                 faculty = Faculty.objects.filter(name=i['FACULTY']).first()
@@ -57,14 +61,14 @@ class Command(DaemonCommand):
                     direction = Direction.objects.create(name=i['PROFILE'], department=department)
 
                 student = Student.objects.create(full_name=i['STUDENT'], direction=direction, profile=i['GRP'],
-                                                 topic=i['NAME'], document=File(f))
+                                                 topic=i['NAME'], document=File(doc))
 
                 if data['Частотный анализ слов'] != 'Error':
                     student.words_cloud = data['Частотный анализ слов']
                     student.save()
 
-                doc.is_processed = True
-                doc.save()
+                #doc.is_processed = True
+                #doc.save()
                 log_create(instance=student)
             else:
                 print('Файл не найден', i['FILE_NAME'])
