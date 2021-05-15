@@ -2,7 +2,7 @@ import os
 
 from django_daemon_command.management.base import DaemonCommand
 from django.conf import settings
-
+import shutil
 from mysite.settings import BASE_DIR
 from nlp.models import Faculty, Direction, Student, UploadedFile, Department
 from nlp import algorithm
@@ -17,7 +17,7 @@ class Command(DaemonCommand):
 
     def process(self, *args, **options):
 
-        file = open(os.path.join(settings.BASE_DIR, 'vkr.txt')).readlines()
+        file = open(os.path.join(settings.BASE_DIR, 'VKR_1.txt')).readlines()
         d = file[0].replace('\n', '').split('\t')
         l = list()
         for i in file[1::]:
@@ -30,15 +30,16 @@ class Command(DaemonCommand):
             except:
                 continue
             l.append(t)
+        file_list = os.listdir(path="/home/nlp/app/server/media/vkr")
         for i in l:
             file_name = i['FILE_NAME'].split('.')
-            file_name = file_name[0]+file_name[1].lower()
-            doc = UploadedFile.objects.filter(is_processed=False, document='documents/'+file_name)
-
-            if doc:
+            file_name = f'{file_name[0]}.{file_name[1].lower()}'
+            if file_name in file_list:
+                doc = open('home/nlp/app/server/media/vkr/' + file_name)
                 print('Файл найден')
+                shutil.copy(f'home/nlp/app/server/media/vkr/{file_name}', f'home/nlp/app/server/выборки/1_Выборка/{file_name}')
                 try:
-                    data = algorithm.main(doc.document, mode='govno')
+                    data = algorithm.main(doc, mode='govno',file_name=file_name)
                 except:
                     print('Скрипт пошел по пизде')
                     continue
@@ -56,7 +57,7 @@ class Command(DaemonCommand):
                     direction = Direction.objects.create(name=i['PROFILE'], department=department)
 
                 student = Student.objects.create(full_name=i['STUDENT'], direction=direction, profile=i['GRP'],
-                                                 topic=i['NAME'], document=doc.document)
+                                                 topic=i['NAME'], document=doc)
 
                 if data['Частотный анализ слов'] != 'Error':
                     student.words_cloud = data['Частотный анализ слов']
@@ -65,4 +66,24 @@ class Command(DaemonCommand):
                 doc.is_processed = True
                 doc.save()
                 log_create(instance=student)
-            else: print('Файл не найден', i['FILE_NAME'])
+            else:
+                print('Файл не найден', i['FILE_NAME'])
+
+
+"""
+000000000000000000000000000
+000000001111000000000000000
+000000010000100000000000000
+000000100000010000000000000
+000000100000010000000000000
+000000100000010000000000000
+000000100000010000000000000
+000000100000010000000000000
+001111100000011111000000000
+010000100000010000100000000
+010000000000000000100000000
+001111111111111111000000000
+000000000000000000000000000
+000000000000000000000000000
+000000000000000000000000000
+"""

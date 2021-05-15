@@ -39,13 +39,16 @@ with open('stop_words.txt', 'r', encoding="utf-8") as file:
         russian_stopwords.append(line.rstrip())
 
 
-def main(doc, mode='default'):
-    data = process_document(doc=doc, mode=mode)
+def main(doc, mode='default',file_name=None):
+    data = process_document(doc=doc, mode=mode,file_name=file_name)
     return data
 
 
-def process_document(doc, mode):
-    doc_type = doc.name.split('.')[-1]
+def process_document(doc, mode,file_name):
+    if (file_name!=None):
+        doc_type = file_name.split('.')[-1]
+    else:
+        doc_type = doc.name.split('.')[-1]
     if doc_type == 'docx':
         document = docx.Document(doc)
         text = ' '.join([paragraph.text for paragraph in document.paragraphs])
