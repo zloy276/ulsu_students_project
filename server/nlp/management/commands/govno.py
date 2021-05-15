@@ -62,7 +62,8 @@ class Command(DaemonCommand):
                     direction = Direction.objects.create(name=i['PROFILE'], department=department)
 
                 student = Student.objects.create(full_name=i['STUDENT'], direction=direction, profile=i['GRP'],
-                                                 topic=i['NAME'], document=dj_file)
+                                                 topic=i['NAME'],
+                                                 document=dj_file)
 
                 if data['Частотный анализ слов'] != 'Error':
                     student.words_cloud = data['Частотный анализ слов']
