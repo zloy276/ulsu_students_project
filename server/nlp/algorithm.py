@@ -50,7 +50,10 @@ def process_document(doc, mode):
         document = docx.Document(doc)
         text = ' '.join([paragraph.text for paragraph in document.paragraphs])
     elif doc_type.lower() == 'pdf':
-        document = fitz.open(stream=doc.read(), filetype='pdf')
+        if(mode=='govno'):
+            document = fitz.open(doc, filetype='pdf')
+        else:
+            document = fitz.open(stream=doc.read(), filetype='pdf')
         text = ' '.join([page.getText("text") for page in document])
     elif doc_type.lower() == 'doc':
         return 'doc'
