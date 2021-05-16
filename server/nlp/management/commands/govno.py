@@ -27,7 +27,7 @@ class Command(BaseCommand):
             l.append(t)
         file_list = os.listdir(path="/home/nlp/app/server/media/vkr")
         for i in l:
-            file_name = i['FILE_NAME'].split('.')
+            file_name = i['FILE_NAME']
             print(file_name)
             if file_name in file_list:
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
