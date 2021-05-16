@@ -1,23 +1,18 @@
 import os
 from django.core.files.base import ContentFile
-from django_daemon_command.management.base import DaemonCommand
 from django.conf import settings
 import shutil
 from mysite.settings import BASE_DIR
 from nlp.models import Faculty, Direction, Student, UploadedFile, Department
 from nlp import algorithm
+from django.core.management.base import BaseCommand
 from nlp.signals import log_create
 
 
-class Command(DaemonCommand):
-    sleep = 5
-
+class Command(BaseCommand):
     def handle(self, *args, **options):
-        self.daemonize()
 
-    def process(self, *args, **options):
-
-        file = open(os.path.join(settings.BASE_DIR, 'VKR_1.txt')).readlines()
+        file = open(os.path.join(settings.BASE_DIR, 'VKR_1.txt'), encoding="utf-8").readlines()
         d = file[0].replace('\n', '').split('\t')
         l = list()
         for i in file[1::]:
@@ -33,7 +28,6 @@ class Command(DaemonCommand):
         file_list = os.listdir(path="/home/nlp/app/server/media/vkr")
         for i in l:
             file_name = i['FILE_NAME'].split('.')
-            file_name = f'{file_name[0]}.{file_name[1].lower()}'
             print(file_name)
             if file_name in file_list:
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
