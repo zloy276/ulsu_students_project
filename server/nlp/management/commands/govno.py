@@ -12,7 +12,7 @@ from nlp.signals import log_create
 class Command(BaseCommand):
     def handle(self, *args, **options):
 
-        file = open(os.path.join(settings.BASE_DIR, 'VKR_1.txt'), encoding="utf-8").readlines()
+        file = open(os.path.join(settings.BASE_DIR, 'VKR_3.txt'), encoding="utf-8").readlines()
         d = file[0].replace('\n', '').split('\t')
         l = list()
         for i in file[1::]:
