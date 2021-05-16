@@ -43,7 +43,7 @@ class Command(BaseCommand):
                     continue
 
                 doc.close()
-                print(i['STUDENT'], i['FACULTY'])
+                print(i)
                 dj_file = ContentFile(open('/home/nlp/app/server/media/vkr/' + file_name, 'rb').read(),
                                       name=i['FILE_NAME'])
 
