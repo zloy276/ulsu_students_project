@@ -49,7 +49,8 @@ class Command(DaemonCommand):
                     continue
 
                 doc.close()
-                dj_file = ContentFile(doc=open('/home/nlp/app/server/media/vkr/' + file_name, 'rb').read(),
+
+                dj_file = ContentFile(open('/home/nlp/app/server/media/vkr/' + file_name, 'rb').read(),
                                       name=i['FILE_NAME'])
 
                 faculty = Faculty.objects.filter(name=i['FACULTY']).first()
