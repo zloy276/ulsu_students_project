@@ -27,7 +27,7 @@ class Command(BaseCommand):
             l.append(t)
         file_list = os.listdir(path="/home/nlp/app/server/media/vkr")
         for i in l:
-            file_name = i['FILENAME']
+            file_name = i['FILE_NAME']
             print(file_name)
             if Student.objects.filter(full_name=i['STUDENT']).exists():
                 continue
@@ -47,7 +47,7 @@ class Command(BaseCommand):
                 doc.close()
                 print(i)
                 dj_file = ContentFile(open('/home/nlp/app/server/media/vkr/' + file_name, 'rb').read(),
-                                      name=i['FILENAME'])
+                                      name=i['FILE_NAME'])
 
                 faculty = Faculty.objects.filter(name=i['FACULTY']).first()
                 if not faculty:
@@ -73,7 +73,7 @@ class Command(BaseCommand):
                 # doc.save()
                 log_create(instance=student)
             else:
-                print('Файл не найден', i['FILENAME'])
+                print('Файл не найден', i['FILE_NAME'])
 
 
 """
