@@ -46,7 +46,7 @@ class Student(models.Model):
     direction = models.ForeignKey(
         'Direction', on_delete=models.CASCADE, verbose_name="Направление", null=True)
     profile = models.CharField("Профиль", max_length=200)
-    topic = models.CharField("Тема ВКР", max_length=200)
+    topic = models.TextField("Тема ВКР")
     words_cloud = ArrayField(models.CharField(
         max_length=200), blank=True, verbose_name="Облако слов", null=True)
     document = models.FileField(upload_to='documents/', null=True)

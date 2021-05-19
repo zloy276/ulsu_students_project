@@ -29,6 +29,8 @@ class Command(BaseCommand):
         for i in l:
             file_name = i['FILE_NAME']
             print(file_name)
+            if Student.objects.filter(full_name=i['STUDENT']).exists():
+                continue
             if file_name in file_list:
                 doc = open('/home/nlp/app/server/media/vkr/' + file_name)
                 print('Файл найден')
