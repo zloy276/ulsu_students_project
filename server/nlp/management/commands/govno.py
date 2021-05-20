@@ -32,7 +32,11 @@ class Command(BaseCommand):
             if Student.objects.filter(full_name=i['STUDENT']).exists():
                 continue
             if file_name in file_list:
-                doc = open('/home/nlp/app/server/media/vkr/' + file_name)
+                try:
+                    doc = open('/home/nlp/app/server/media/vkr/' + file_name)
+                except:
+                    print("слишком длинное имя файла")
+                    continue
                 print('Файл найден')
                 # shutil.copy(f'/home/nlp/app/server/media/vkr/{file_name}', f'/home/nlp/app/server/выборки/1_Выборка/{file_name}')
                 try:
