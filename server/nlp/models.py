@@ -47,6 +47,10 @@ class Student(models.Model):
         'Direction', on_delete=models.CASCADE, verbose_name="Направление", null=True)
     profile = models.CharField("Профиль", max_length=200)
     topic = models.TextField("Тема ВКР")
+    group = models.CharField("Группа", max_length=200)
+    keywords = models.TextField("Ключевые слова")
+    teacher = models.CharField("Преподаватель", max_length=200)
+    speciality = models.CharField("Специальность", max_length=200)
     words_cloud = ArrayField(models.CharField(
         max_length=200), blank=True, verbose_name="Облако слов", null=True)
     document = models.FileField(upload_to='documents/', null=True)
@@ -77,7 +81,7 @@ class UploadedFile(models.Model):
     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    is_processed=models.BooleanField(default=False)
+    is_processed = models.BooleanField(default=False)
 
 
 class ProcessedDocument(models.Model):

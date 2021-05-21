@@ -61,13 +61,14 @@ class Command(BaseCommand):
                 if not department:
                     department = Department.objects.create(name=i['CATHEDRA'], faculty=faculty)
 
-                direction = Direction.objects.filter(name=i['PROFILE'], department=department).first()
+                direction = Direction.objects.filter(name=i['GRP'].split('-')[0], department=department).first()
                 if not direction:
-                    direction = Direction.objects.create(name=i['PROFILE'], department=department)
+                    direction = Direction.objects.create(name=i['GRP'].split('-')[0], department=department)
 
                 student = Student.objects.create(full_name=i['STUDENT'], direction=direction, profile=i['GRP'],
-                                                 topic=i['NAME'],
-                                                 document=dj_file)
+                                                 topic=i['NAME'], document=dj_file, group=i['GROUP'],
+                                                 teacher=i['TEACHER'], keywords=i['KEYWORDS'],
+                                                 speciality=i['SPECIALITY'])
 
                 if data['Частотный анализ слов'] != 'Error':
                     student.words_cloud = data['Частотный анализ слов']
