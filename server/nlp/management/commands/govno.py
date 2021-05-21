@@ -66,7 +66,7 @@ class Command(BaseCommand):
                     direction = Direction.objects.create(name=i['GRP'].split('-')[0], department=department)
 
                 student = Student.objects.create(full_name=i['STUDENT'], direction=direction, profile=i['GRP'],
-                                                 topic=i['NAME'], document=dj_file, group=i['GROUP'],
+                                                 topic=i['NAME'], document=dj_file, group=i['GRP'],
                                                  teacher=i['TEACHER'], keywords=i['KEYWORDS'],
                                                  speciality=i['SPECIALITY'])
 
