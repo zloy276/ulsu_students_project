@@ -27,7 +27,7 @@ def process_doc(request, pk):
     if doc.name.split('.')[-1] == 'docx':
         data = algorithm.main(doc.document)
     else:
-        return reverse('nlp:upload')
+        return redirect('upload')
 
     faculty = Faculty.objects.filter(name=data['Факультет']).first()
     if not faculty:
