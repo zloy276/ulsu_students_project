@@ -24,7 +24,7 @@ def model_form_upload(request):
 
 def process_doc(request, pk):
     doc = UploadedFile.objects.get(pk=pk)
-    if doc.name.split('.')[-1] == 'docx':
+    if doc.document.name.split('.')[-1] == 'docx':
         data = algorithm.main(doc.document)
     else:
         return redirect('upload')
