@@ -20,7 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('nlp.urls'))
+    path('',include('web.urls'))
 ]
 # test
 if settings.DEBUG:
