@@ -40,9 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'nlp',
     'django_json_widget',
-    'django_daemon_command',
+    'web'
 ]
 
 MIDDLEWARE = [
