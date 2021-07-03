@@ -2,8 +2,6 @@ FROM python:3.7.2
 
 ARG DEBUG
 
-
-RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN apt update
 RUN apt install -y python3-venv
 
